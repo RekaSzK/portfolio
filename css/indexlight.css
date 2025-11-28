@@ -1,0 +1,96 @@
+@font-face
+{
+    font-family: "Raleway Light";
+    src: url(../font/raleway.light.ttf);
+    font-family: "Raleway Regular";
+    src: url(../font/raleway.regular.ttf);
+    font-family: "Raleway Bold";
+    src: url(../font/raleway.bold.ttf);
+}
+
+body
+{
+    margin: 0;
+}
+
+/*General design ends here.
+Header design starts.*/
+
+header
+{
+    padding: 20px 0 20px 0;
+}
+
+#headerGrid
+{
+    font-family: "Raleway Regular", "Arial";
+    font-size: 24px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+    margin: 0 3% 0 3%;
+}
+
+#headerHome
+{
+    font-size: 32px;
+}
+
+#headerList
+{
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#headerList > li
+{
+    padding: 0 2%;
+}
+
+#headerList > li:hover
+{
+    font-family: "Raleway Bold";
+    background-color: #D9D9D9;
+    border-bottom: 1px solid black;
+}
+
+/*Header design ends here.
+Main design starts.*/
+
+main
+{
+    background-image: url(../images/bg.png);
+    background-size: cover;
+    background-color: white;
+    padding: 3%;
+}
+
+#mainGrid
+{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    font-family: "Raleway Regular", "Arial";
+    font-size: 20px;
+}
+
+#mainLeft
+{
+    padding: 5%;
+    background-color: white;
+}
+
+#mainLeftTitle
+{
+    font-family: "Raleway Bold";
+    font-size: 30px;
+    margin-top: 0;
+}
+
+#mainLeftLowerParagraph
+{
+    font-style: italic;
+    margin-bottom: 0;
+}
