@@ -1,11 +1,11 @@
 @font-face
 {
     font-family: "Raleway Light";
-    src: url(../font/raleway.light.ttf);
+    src: url(../fonts/raleway.light.ttf);
     font-family: "Raleway Regular";
-    src: url(../font/raleway.regular.ttf);
+    src: url(../fonts/raleway.regular.ttf);
     font-family: "Raleway Bold";
-    src: url(../font/raleway.bold.ttf);
+    src: url(../fonts/raleway.bold.ttf);
 }
 
 body
@@ -40,21 +40,65 @@ header
 {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
+/* Setting up transitions and hover effects for the 4 menu items. */
 #headerList > li
 {
     padding: 0 2%;
+    position: relative;
+    cursor: pointer;
+    transition: 
+        background-color 0.25s ease-in-out,
+        font-weight 0.25s ease-in-out;
 }
 
-#headerList > li:hover
+/* Changing font weight and background colour while hovering. */
+#headerList > li:not(#headerDarkMode):hover
 {
-    font-family: "Raleway Bold";
+    font-weight: bold;
     background-color: #D9D9D9;
-    border-bottom: 1px solid black;
+}
+
+/* Underline effect. */
+#headerList > li:not(#headerDarkMode)::after
+{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 2px;
+    width: 0;
+    background-color: black;
+    transition:
+        width 0.25s ease-in-out,
+        background-color 0.25s ease-in-out;
+}
+
+/* Making sure the line goes all the way across. */
+#headerList > li:not(#headerDarkMode):hover::after
+{
+    width: 100%;
+}
+
+#headerDarkMode
+{
+    padding: 0 2%;
+    cursor: pointer;
+    transition:
+        background-color 0.25s ease-in-out,
+        color 0.25s ease-in-out;
+}
+
+#headerDarkMode:hover
+{
+    color: white;
+    font-weight: bold;
+    background-color: #3D3D3D;
 }
 
 /*Header design ends here.
@@ -71,13 +115,14 @@ main
 #mainGrid
 {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: repeat(5, 20%);
     font-family: "Raleway Regular", "Arial";
     font-size: 20px;
 }
 
 #mainLeft
 {
+    grid-column: span 2;
     padding: 5%;
     background-color: white;
 }
@@ -93,4 +138,17 @@ main
 {
     font-style: italic;
     margin-bottom: 0;
+}
+
+#mainRight
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column: 4;
+}
+
+#portrait
+{
+    width: 100%
 }
