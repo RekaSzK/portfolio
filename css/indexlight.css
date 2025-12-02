@@ -142,13 +142,32 @@ main
 
 #mainRight
 {
-    display: flex;
+    grid-column: 4 / span 2;
+    display: grid;
+    grid-template-columns: 50% 50%;
     justify-content: center;
     align-items: center;
-    grid-column: 4;
+}
+
+#mainRightImage
+{
+    grid-column: 1 / 2;
 }
 
 #portrait
 {
-    width: 100%
+    width: 100%;
+    border: 5px solid white;
+    box-sizing: border-box;
+}
+
+#githubIcon, #linkedinIcon
+{
+    width: 15%;
+    padding-top: 10px;
+}
+
+#githubIcon:hover, #linkedinIcon:hover
+{
+    width: 20%;
 }
