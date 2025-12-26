@@ -42,7 +42,7 @@ header
     text-decoration: none;
     padding: 0 2%;
     font-size: 32px;
-    cursor: pointer;
+    /* cursor: pointer; */
     transition: 
         background-color 0.25s ease-in-out,
         font-weight 0.25s ease-in-out;
@@ -60,11 +60,11 @@ header
 
 /*Setting up transitions and hover effects for the menu items.*/
 
-#headerHome > a:hover
+/* #headerHome > a:hover
 {
     font-weight: bold;
     background-color: #D9D9D9;
-}
+} */
 
 /*To disable the default styling of the anchors.*/
 #headerList > li > a 
