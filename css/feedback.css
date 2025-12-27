@@ -157,6 +157,23 @@ main
     padding: 20px;
 }
 
+/*Setting up transitions and hover effects for the cards.*/
+
+.feedbackInGrid
+{
+    /*Horizontal offset, vertical offset, blur radius, colour and transparency.*/
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition:
+        box-shadow 0.25s ease-in-out,
+        transform 0.25s ease-in-out;
+}
+
+.feedbackInGrid:hover
+{
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25); 
+    transform: translateY(-2px);
+}
+
 .feedbackTitle
 {
     margin-top: 0;
