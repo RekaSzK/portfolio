@@ -1,0 +1,218 @@
+@font-face
+{
+    font-family: "Raleway Light";
+    src: url(../fonts/raleway.light.ttf);
+    font-family: "Raleway Regular";
+    src: url(../fonts/raleway.regular.ttf);
+    font-family: "Raleway Bold";
+    src: url(../fonts/raleway.bold.ttf);
+}
+
+body
+{
+    margin: 0;
+}
+
+
+/*General design ends here.
+Header design starts.*/
+
+/*NOTE: The header has been designed with the intention of being able to reuse it, so other pages only require the disabling of links.*/
+
+
+header
+{
+    padding: 20px 0 20px 0;
+}
+
+#headerGrid
+{
+    font-family: "Raleway Regular", "Arial";
+    font-size: 24px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+    margin: 0 3% 0 3%;
+}
+
+#headerHome > a
+{
+    display: inline-block;
+    color: black;
+    text-decoration: none;
+    padding: 0 2%;
+    font-size: 32px;
+    cursor: pointer;
+    transition: 
+        background-color 0.25s ease-in-out,
+        font-weight 0.25s ease-in-out;
+}
+
+#headerList
+{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/*Setting up transitions and hover effects for the menu items.*/
+
+#headerHome > a:hover
+{
+    font-weight: bold;
+    background-color: #D9D9D9;
+}
+
+/*To disable the default styling of the anchors.*/
+#headerList > li > a 
+{
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}
+
+#headerList > #currentPage
+{
+    padding: 0 2%;
+    position: relative;
+    font-style: italic;
+}
+
+#headerList > li:not(#currentPage)
+{
+    padding: 0 2%;
+    position: relative;
+    cursor: pointer;
+    transition: 
+        background-color 0.25s ease-in-out,
+        font-weight 0.25s ease-in-out;
+}
+
+/*Changing font weight and background colour while hovering.*/
+#headerList > li:not(#currentPage):hover
+{
+    font-weight: bold;
+    background-color: #D9D9D9;
+}
+
+/*Underline effect.*/
+#headerList > li:not(#currentPage)::after
+{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 2px;
+    width: 0;
+    background-color: black;
+    transition:
+        width 0.25s ease-in-out,
+        background-color 0.25s ease-in-out;
+}
+
+/*Making sure the line goes all the way across.*/
+#headerList > li:not(#currentPage):hover::after
+{
+    width: 100%;
+}
+
+
+/*Header design ends here.
+Main design starts.*/
+
+
+main
+{
+    background-image: url(../images/bg.png);
+    background-size: cover;
+    background-color: white;
+    padding: 3%;
+}
+
+#mainGrid
+{
+    display: grid;
+    grid-template-rows: repeat(2, 1fr); /*Change number based on number of entries.*/
+    font-family: "Raleway Regular", "Arial";
+    font-size: 20px;
+    background-color: white;
+    padding: 20px;
+    row-gap: 20px;
+}
+
+.mainRow
+{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+}
+
+.mainText
+{
+    grid-column: span 2;
+}
+
+.textTitle
+{
+    margin-top: 0;
+    font-size: 30px;
+}
+
+/*To ensure that no image ever overflows its dedicated cell.*/
+.mainImg
+{
+    overflow: hidden;
+    align-self: start;
+}
+
+/*Further safety measures for images to retain their aspect ratio while also matching the cell size.*/
+.mainImg > img
+{
+    width: 100%;
+    height: auto;
+    display: block;
+    box-sizing: border-box;
+    border: 1px solid #D9D9D9;
+}
+
+/*To disable the default styling of the anchors.*/
+.presentationLink > a
+{
+    color: inherit;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    transition:
+        font-weight 0.25s ease-in-out;
+}
+
+/*Changing font weight while hovering.*/
+.presentationLink > a:hover
+{
+    /*color: #6A89A7;*/
+    font-weight: bold;
+}
+
+/*Underline effect.*/
+.presentationLink > a::after
+{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 2px;
+    width: 0;
+    background-color: black;
+    transition:
+        width 0.25s ease-in-out;
+}
+
+/*Making sure the line goes all the way across.*/
+.presentationLink > a:hover::after
+{
+    width: 100%;
+}
