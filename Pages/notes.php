@@ -1,3 +1,18 @@
+<?php
+
+    session_start();
+    require "../dbconnect.php";
+
+    if (!isset($_SESSION['userId']))
+    {
+        header("Location: login.php");
+        exit;
+    }
+
+    $userId = $_SESSION['userId'];
+    $userRole = $_SESSION['userRole'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,11 +61,24 @@
                         Plenary notes taken by me:
                     </p>
                     <ul class="textLinks">
-                        <li><a href="../files/notes/Minutes of Meetings - 09.12.docx">Plenary Notes - 09.12.</a></li>
-                        <li><a href="../files/notes/Minutes of Meetings - 09.26.docx">Plenary Notes - 09.26.</a></li>
-                        <li><a href="../files/notes/Minutes of Meetings - 10.10.docx">Plenary Notes - 10.10.</a></li>
-                        <li><a href="../files/notes/Minutes of Meetings - 10.31.docx">Plenary Notes - 10.31.</a></li>
-                        <li><a href="../files/notes/Minutes of Meetings - 11.28.docx">Plenary Notes - 11.28.</a></li>  
+                        <?php
+                            if($userRole === 'admin')
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Minutes of Meetings%' AND file.fileStatus = 'approved'");
+                                $stmt->execute();
+                            }
+                            else
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Minutes of Mettings%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
+                                $stmt->execute([$userId]);
+                            }
+
+                            $files = $stmt->fetchAll();
+
+                            foreach($files as $file) {
+                        ?>
+                            <li><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></li>
+                            <?php }; ?>
                     </ul>
                 </div>
             </div>
