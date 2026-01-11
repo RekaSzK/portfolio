@@ -1,13 +1,7 @@
 <?php
 
-    session_start();
-    require "../dbconnect.php";
-
-    if (!isset($_SESSION['userId']))
-    {
-        header("Location: login.php");
-        exit;
-    }
+    require_once("../includes/authorise.php");
+    require_once("../dbconnect.php");
 
     $userId = $_SESSION['userId'];
     $userRole = $_SESSION['userRole'];
@@ -26,13 +20,13 @@
     <header>
         <div id="headerGrid">
             <div id="headerHome">
-                <a href="index.html">HOME</a>
+                <a href="index.php">HOME</a>
             </div>
             <ul id="headerList">
-                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="feedback.php">Feedback</a></li>
                 <li id="currentPage">Notes</li>
-                <li><a href="presenting.html">Presenting</a></li>
-                <li><a href="proskills.html">Professional Skills</a></li>
+                <li><a href="presenting.php">Presenting</a></li>
+                <li><a href="proskills.php">Professional Skills</a></li>
             </ul>
         </div>
     </header>

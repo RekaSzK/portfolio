@@ -1,3 +1,7 @@
+<?php
+    require_once("../includes/authorise.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,10 +18,11 @@
                 <a>HOME</a>
             </div>
             <ul id="headerList">
-                <li><a href="feedback.html">Feedback</a></li>
-                <li><a href="notes.html">Notes</a></li>
-                <li><a href="presenting.html">Presenting</a></li>
-                <li><a href="proskills.html">Professional Skills</a></li>
+                <li><a href="feedback.php">Feedback</a></li>
+                <li><a href="notes.php">Notes</a></li>
+                <li><a href="presenting.php">Presenting</a></li>
+                <li><a href="proskills.php">Professional Skills</a></li>
+                <li><a href="logout.php">Logout</a></li>
             </ul>
         </div>
     </header>

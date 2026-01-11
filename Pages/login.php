@@ -1,13 +1,19 @@
 <?php
 
     session_start();
-    require "../dbconnect.php";
+    require_once("../dbconnect.php");
+
+    if(isset($_SESSION['userId']))
+        {
+            header("Location: index.php");
+            exit;
+        }
 
     $error = "";
 
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        $username = filter_input(INPUT_POST, "username");
+        $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
         $password = filter_input(INPUT_POST, "password");
 
         if(empty($username) || empty($password))
@@ -57,11 +63,11 @@
     ?>
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
         <div>
-            <label for="username">Username:<label>
+            <label for="username">Username:</label>
             <input type="text" name="username" id="username">
         </div>
         <div>
-            <label for="password">Password:<label>
+            <label for="password">Password:</label>
             <input type="password" name="password" id="password">
         </div>
         <button type="submit">Log In</button>
