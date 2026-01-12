@@ -27,6 +27,12 @@
                 <li id="currentPage">Notes</li>
                 <li><a href="presenting.php">Presenting</a></li>
                 <li><a href="proskills.php">Professional Skills</a></li>
+                <?php
+                    if(isset($_SESSION['userId']))
+                        {
+                            echo "<li><a href='logout.php'>Log Out</a></li>";
+                        }
+                ?>
             </ul>
         </div>
     </header>
@@ -84,9 +90,24 @@
                         Minutes, meeting agendas and schedules made by me:
                     </p>
                     <ul class="textLinks">
-                        <li><a href="../files/notes/Minutes of Consultation Meeting - 10.07.doc">Consultation Meeting Minutes - 10.07.</a></li>
-                        <li><a href="../files/notes/Meeting Agenda - 11.28.docx">Meeting Agenda - 11.28.</a></li>
-                        <li><a href="../files/notes/Interview Schedule - 11.28.docx">Interview Schedule - 11.28.</a></li>
+                        <?php
+                            if($userRole === 'admin')
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE (file.fileName LIKE '%Consultation%' OR file.fileName LIKE '%Agenda%' OR file.fileName LIKE '%Interview%') AND file.fileStatus = 'approved'");
+                                $stmt->execute();
+                            }
+                            else
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE (file.fileName LIKE '%Consultation%' OR file.fileName LIKE '%Agenda%' OR file.fileName LIKE '%Interview%') AND file.fileStatus = 'approved' AND file_access.user_id = ?");
+                                $stmt->execute([$userId]);
+                            }
+
+                            $files = $stmt->fetchAll();
+
+                            foreach($files as $file) {
+                        ?>
+                            <li><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></li>
+                            <?php }; ?>
                     </ul>
                 </div>
             </div>
@@ -97,10 +118,24 @@
                         To understand our works' foundations best, find below the Code of Conduct and Project Plan of each Project.
                     </p>
                     <ul class="textLinks">
-                        <li><a href="../files/notes/Code of Conduct - Y1P1.docx">Year 1, Project Web Development - Code of Conduct</a></li>
-                        <li><a href="../files/notes/Project Plan - Y1P1.docx">Year 1, Project Web Development - Project Plan</a></li>
-                        <li><a href="../files/notes/Code of Conduct - Y1P2.docx">Year 1, Project Database Application Management - Code of Conduct</a></li>
-                        <li><a href="../files/notes/Project Plan - Y1P2.docx">Year 1, Project Database Application Management - Project Plan</a></li>
+                        <?php
+                            if($userRole === 'admin')
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Code of Conduct%' OR file.fileName LIKE '%Project Plan%' AND file.fileStatus = 'approved'");
+                                $stmt->execute();
+                            }
+                            else
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Code of Conduct%' OR file.fileName LIKE '%Project Plan%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
+                                $stmt->execute([$userId]);
+                            }
+
+                            $files = $stmt->fetchAll();
+
+                            foreach($files as $file) {
+                        ?>
+                            <li><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></li>
+                            <?php }; ?>
                     </ul>
                 </div>
             </div>

@@ -22,6 +22,12 @@
                 <li><a href="notes.php">Notes</a></li>
                 <li id="currentPage">Presenting</li>
                 <li><a href="proskills.php">Professional Skills</a></li>
+                <?php
+                    if(isset($_SESSION['userId']))
+                        {
+                            echo "<li><a href='logout.php'>Log Out</a></li>";
+                        }
+                ?>
             </ul>
         </div>
     </header>
