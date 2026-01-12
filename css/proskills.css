@@ -172,7 +172,7 @@ main
 
 .textLinks > li
 {
-    margin-bottom: 10px;
+    margin-bottom: 0;
 }
 
 /*To disable the default styling of the anchors.*/

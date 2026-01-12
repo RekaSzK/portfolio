@@ -184,6 +184,11 @@ main
     padding: 20px;
 }
 
+.presentationLink
+{
+    margin-bottom: 0;
+}
+
 /*Further safety measures for images to retain their aspect ratio while also matching the cell size.*/
 .mainImgInner > img
 {

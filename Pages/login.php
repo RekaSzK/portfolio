@@ -53,24 +53,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOG IN</title>
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
-    <?php
-        if (!empty($error))
-        {
-            echo "<p id='errorOutput'>" . $error . "</p>";
-        }
-    ?>
-    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username">
+    <header>
+        <div id="headerGrid">
+            LOG IN
         </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password">
+    </header>
+    <main>
+        <div id="mainContainer">
+            <div id="mainField">
+                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+                    <div>
+                        <label for="username">Username:</label>
+                        <input type="text" name="username" id="username">
+                    </div>
+                    <div>
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" id="password">
+                    </div>
+                    <button type="submit">Log In</button>
+                </form>
+                <div id="errorsContainer">
+                    <?php
+                        if (!empty($error))
+                        {
+                            echo "<p id='errorOutput'>" . $error . "</p>";
+                        }
+                    ?>
+                </div>
+            </div>
         </div>
-        <button type="submit">Log In</button>
-    </form>
+    </main>
 </body>
 </html>
