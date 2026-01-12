@@ -34,26 +34,30 @@
     <main>
         <div id="mainGrid">
             <div id="mainLeft">
-                <p id="mainLeftTitle">
-                    BIOGRAPHY : Réka Szunyogh-Kocsis
-                </p>
-                <p>
-                    Hello, and welcome to my website! My full name is Réka Laura Szunyogh-Kocsis, 
-                    a first-year IT student at NHL Stenden University of Applied Sciences. I am 
-                    from Budapest, Hungary, currently studying in Emmen, The Netherlands.
-                </p>
-                <p>
-                    This website aims to showcase my university work and provide information about my work ethic.<br>
-                    Using <b>FEEDBACK</b>, you can find out what people in my life have to say about me, whether 
-                    professionally or personally.<br>
-                    On the <b>NOTES</b> page, you can find all of my approved minutes of meetings and plenary notes.<br>
-                    The <b>CONTACT</b> tab provides you with a form, through which you can provide me with any kind of 
-                    feedback you might have.<br>
-                    Lastly, <b>FILES</b> contains all of my assignments, if you wish to take a look at them.
-                </p>
-                <p id="mainLeftLowerParagraph">
-                    Thank you for your visit. I hope you find everything you're looking for.
-                </p>
+                <div id="mainLeftField">
+                    <div id="innerMainLeft">
+                        <p id="mainLeftTitle">
+                            BIOGRAPHY : Réka Szunyogh-Kocsis
+                        </p>
+                        <p>
+                            Hello, and welcome to my website! My full name is Réka Laura Szunyogh-Kocsis, 
+                            a first-year IT student at NHL Stenden University of Applied Sciences. I am 
+                            from Budapest, Hungary, currently studying in Emmen, The Netherlands.
+                        </p>
+                        <p>
+                            This website aims to showcase my university work and provide information about my work ethic.<br>
+                            Using <b>FEEDBACK</b>, you can find out what people in my life have to say about me, whether 
+                            professionally or personally.<br>
+                            On the <b>NOTES</b> page, you can find all of my approved minutes of meetings and plenary notes.<br>
+                            The <b>CONTACT</b> tab provides you with a form, through which you can provide me with any kind of 
+                            feedback you might have.<br>
+                            Lastly, <b>FILES</b> contains all of my assignments, if you wish to take a look at them.
+                        </p>
+                        <p id="mainLeftLowerParagraph">
+                            Thank you for your visit. I hope you find everything you're looking for.
+                        </p>
+                    </div>
+                </div>
             </div>
             <div id="mainRight">
                 <div id="mainRightImage">

@@ -156,6 +156,12 @@ main
     flex: 1;
 }
 
+.textTitle
+{
+    margin-top: 0;
+    font-size: 30px;
+}
+
 /*To remove the default styling of the list.*/
 .textLinks
 {
@@ -206,4 +212,21 @@ main
 .textLinks > li > a:hover::after
 {
     width: 100%;
+}
+
+/*Setting up transitions and hover effects for the cards.*/
+
+.mainText
+{
+    /*Horizontal offset, vertical offset, blur radius, colour and transparency.*/
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition:
+        box-shadow 0.25s ease-in-out,
+        transform 0.25s ease-in-out;
+}
+
+.mainText:hover
+{
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25); 
+    transform: translateY(-2px);
 }

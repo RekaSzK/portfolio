@@ -35,41 +35,49 @@
         <div id="mainGrid">
             <div class="mainRow">
                 <div class="mainText">
-                    <p class="textTitle">
-                        <b>YEAR 1, PERIOD 1</b> : PROJECT WEB DEVELOPMENT
-                    </p>
-                    <p class="textParagraph">
-                        The presentation was created and presented by <b>Aynur Tozluyurt</b> and <b>myself</b>. 
-                        We aimed to create a clean, polished PowerPoint, to highlight the colourful nature of our website. 
-                        Included were several images of the final look of our website, icons that had been used and the colour scheme.
-                    </p>
-                    <p class="presentationLink">
-                        You can find our presentation <a href="../files/presenting/Sunny Socks Website.pptx">here</a>.<br>
-                        You can find the grading of our presentation <a href="../files/presenting/2025-2026 Assessment form Presenting - IT IE - Tagged.pdf">here</a>.
-                    </p>
+                    <div class="mainTextInner">
+                        <p class="textTitle">
+                            <b>YEAR 1, PERIOD 1</b> : PROJECT WEB DEVELOPMENT
+                        </p>
+                        <p class="textParagraph">
+                            The presentation was created and presented by <b>Aynur Tozluyurt</b> and <b>myself</b>. 
+                            We aimed to create a clean, polished PowerPoint, to highlight the colourful nature of our website. 
+                            Included were several images of the final look of our website, icons that had been used and the colour scheme.
+                        </p>
+                        <p class="presentationLink">
+                            You can find our presentation <a href="../files/presenting/Sunny Socks Website.pptx">here</a>.<br>
+                            You can find the grading of our presentation <a href="../files/presenting/2025-2026 Assessment form Presenting - IT IE - Tagged.pdf">here</a>.
+                        </p>
+                    </div>
                 </div>
                 <div class="mainImg">
-                    <img id="sunnySocksImg" src="../images/SunnySocks.png" alt="Image of the Sunny Socks Homepage">
+                    <div class="mainImgInner">
+                        <img id="sunnySocksImg" src="../images/SunnySocks.png" alt="Image of the Sunny Socks Homepage">
+                    </div>
                 </div>
             </div>
             <div class="mainRow">
                 <div class="mainImg">
-                    <img id="TBA" src="TBA" alt="TBA">
+                    <div class="mainImgInner">
+                        <img id="TBA" src="TBA" alt="TBA">
+                    </div>
                 </div>
                 <div class="mainText">
-                    <p class="textTitle">
-                        <b>YEAR 1, PERIOD 2</b> : PROJECT DATABASE APPLICATION MANAGEMENT
-                    </p>
-                    <p class="textParagraph">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Cum consectetur dignissimos et reiciendis molestias, 
-                        quisquam reprehenderit beatae rerum nisi deserunt tempora non cumque harum, 
-                        earum accusamus consequuntur voluptate itaque iste?
-                    </p>
-                    <p class="presentationLink">
-                        You can find our presentation <a href="">here</a>.<br>
-                        You can find the grading of our presentation <a href="">here</a>.
-                    </p>
+                    <div class="mainTextInner">
+                        <p class="textTitle">
+                            <b>YEAR 1, PERIOD 2</b> : PROJECT DATABASE APPLICATION MANAGEMENT
+                        </p>
+                        <p class="textParagraph">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Cum consectetur dignissimos et reiciendis molestias, 
+                            quisquam reprehenderit beatae rerum nisi deserunt tempora non cumque harum, 
+                            earum accusamus consequuntur voluptate itaque iste?
+                        </p>
+                        <p class="presentationLink">
+                            You can find our presentation <a href="">here</a>.<br>
+                            You can find the grading of our presentation <a href="">here</a>.
+                        </p>
+                    </div>
                 </div>
             </div>
             <!-- Add new entries here. -->

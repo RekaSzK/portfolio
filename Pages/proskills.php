@@ -36,7 +36,9 @@
             <div class="mainField">
                 <div class="mainText">
                     <p class="textTitle">
-                        <b>REFLECTION REPORT</b> : Year 1, Semester 1<br>
+                        <b>REFLECTION REPORT</b> : Year 1, Semester 1
+                    </p>
+                    <p>
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
                         Optio, explicabo praesentium voluptas provident adipisci rerum id iusto expedita alias? 
                         Neque dicta eveniet aperiam saepe delectus dignissimos, facilis sed libero voluptatibus.
@@ -49,7 +51,9 @@
             <div class="mainField">
                 <div class="mainText">
                     <P class="textTitle">
-                        <b>STUDY CAREER COACHING</b><br>
+                        <b>STUDY CAREER COACHING</b>
+                    </p>
+                    <p>
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
                         Optio, explicabo praesentium voluptas provident adipisci rerum id iusto expedita alias? 
                         Neque dicta eveniet aperiam saepe delectus dignissimos, facilis sed libero voluptatibus.
