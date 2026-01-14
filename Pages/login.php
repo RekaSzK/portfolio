@@ -62,18 +62,18 @@
         </div>
     </header>
     <main>
-        <div id="mainContainer">
-            <div id="mainField">
+        <div id="mainField">
+            <div id="mainContainer">
                 <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-                    <div>
+                    <div class="formCategory">
                         <label for="username">Username:</label>
                         <input type="text" name="username" id="username">
                     </div>
-                    <div>
+                    <div class="formCategory">
                         <label for="password">Password:</label>
                         <input type="password" name="password" id="password">
                     </div>
-                    <button type="submit">Log In</button>
+                    <button id="loginButton" type="submit">Log In</button>
                 </form>
                 <div id="errorsContainer">
                     <?php

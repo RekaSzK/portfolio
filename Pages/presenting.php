@@ -1,5 +1,10 @@
 <?php
+
     require_once("../includes/authorise.php");
+    require_once("../dbconnect.php");
+
+    $userId = $_SESSION['userId'];
+    $userRole = $_SESSION['userRole'];
 ?>
 
 <!DOCTYPE html>
@@ -45,8 +50,43 @@
                             Included were several images of the final look of our website, icons that had been used and the colour scheme.
                         </p>
                         <p class="presentationLink">
-                            You can find our presentation <a href="../files/presenting/Sunny Socks Website.pptx">here</a>.<br>
-                            You can find the grading of our presentation <a href="../files/presenting/2025-2026 Assessment form Presenting - IT IE - Tagged.pdf">here</a>.
+                            <?php
+                                if($userRole === 'admin')
+                                {
+                                    $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Presentation - Y1P1%' AND file.fileStatus = 'approved'");
+                                    $stmt->execute();
+                                }
+                                else
+                                {
+                                    $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Presentation - Y1P1%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
+                                    $stmt->execute([$userId]);
+                                }
+
+                                $files = $stmt->fetchAll();
+
+                                foreach($files as $file) {
+                            ?>
+                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                            <?php } ?>
+
+                            <?php
+                                if($userRole === 'admin')
+                                {
+                                    $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Presentation Grading - Y1P1%' AND file.fileStatus = 'approved'");
+                                    $stmt->execute();
+                                }
+                                else
+                                {
+                                    $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Presentation Grading - Y1P1%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
+                                    $stmt->execute([$userId]);
+                                }
+
+                                $files = $stmt->fetchAll();
+
+                                foreach($files as $file) {
+                            ?>
+                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                            <?php } ?>
                         </p>
                     </div>
                 </div>
@@ -74,8 +114,43 @@
                             earum accusamus consequuntur voluptate itaque iste?
                         </p>
                         <p class="presentationLink">
-                            You can find our presentation <a href="">here</a>.<br>
-                            You can find the grading of our presentation <a href="">here</a>.
+                            <?php
+                                if($userRole === 'admin')
+                                {
+                                    $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Presentation - Y1P2%' AND file.fileStatus = 'approved'");
+                                    $stmt->execute();
+                                }
+                                else
+                                {
+                                    $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Presentation - Y1P2%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
+                                    $stmt->execute([$userId]);
+                                }
+
+                                $files = $stmt->fetchAll();
+
+                                foreach($files as $file) {
+                            ?>
+                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                            <?php } ?>
+
+                            <?php
+                                if($userRole === 'admin')
+                                {
+                                    $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Presentation Grading - Y1P2%' AND file.fileStatus = 'approved'");
+                                    $stmt->execute();
+                                }
+                                else
+                                {
+                                    $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Presentation Grading - Y1P2%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
+                                    $stmt->execute([$userId]);
+                                }
+
+                                $files = $stmt->fetchAll();
+
+                                foreach($files as $file) {
+                            ?>
+                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                            <?php } ?>
                         </p>
                     </div>
                 </div>

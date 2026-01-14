@@ -1,5 +1,10 @@
 <?php
+
     require_once("../includes/authorise.php");
+    require_once("../dbconnect.php");
+
+    $userId = $_SESSION['userId'];
+    $userRole = $_SESSION['userRole'];
 ?>
 
 <!DOCTYPE html>
@@ -43,9 +48,26 @@
                         Optio, explicabo praesentium voluptas provident adipisci rerum id iusto expedita alias? 
                         Neque dicta eveniet aperiam saepe delectus dignissimos, facilis sed libero voluptatibus.
                     </p>
-                    <ul class="textLinks">
-                        <li>You can read my reflection report for <b>year 1, semester 1</b> <a href="">here</a>.</li>
-                    </ul>
+                    <p class="filesLink">
+                        <?php
+                            if($userRole === 'admin')
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Reflection Report - Y1P2%' AND file.fileStatus = 'approved'");
+                                $stmt->execute();
+                            }
+                            else
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Reflection Report - Y1P2%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
+                                $stmt->execute([$userId]);
+                            }
+
+                            $files = $stmt->fetchAll();
+
+                            foreach($files as $file) {
+                        ?>
+                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                            <?php } ?>
+                    </p>
                 </div>
             </div>
             <div class="mainField">
@@ -58,9 +80,26 @@
                         Optio, explicabo praesentium voluptas provident adipisci rerum id iusto expedita alias? 
                         Neque dicta eveniet aperiam saepe delectus dignissimos, facilis sed libero voluptatibus.
                     </P>
-                    <ul class="textLinks">
-                        <li>You can read my <b>1.2 Advisory Interview Document</b> <a href="">here</a>.</li>
-                    </ul>
+                    <p class="filesLink">
+                        <?php
+                            if($userRole === 'admin')
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Study Career Coaching - Y1P2%' AND file.fileStatus = 'approved'");
+                                $stmt->execute();
+                            }
+                            else
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Study Career Coaching - Y1P2%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
+                                $stmt->execute([$userId]);
+                            }
+
+                            $files = $stmt->fetchAll();
+
+                            foreach($files as $file) {
+                        ?>
+                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                            <?php } ?>
+                    </p>
                 </div>
             </div>
         </div>

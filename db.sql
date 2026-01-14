@@ -111,8 +111,36 @@ VALUES
 ALTER TABLE `user`
 ADD `password` VARCHAR(255) NOT NULL;
 
---Addig password for admin user. 30/12/2025
+--Adding password for admin user. 30/12/2025
 
 UPDATE `user`
 SET `password` = '$2y$12$.x1FhhBOhQ2MXahF0icHtu8S1niftq62ERQGpFGw83nu8jprEogCW'
 WHERE `userName` = 'admin';
+
+--Adding files for the Feedback page. 13/01/2026
+
+INSERT INTO `file` (`fileName`, `fileFormat`, `filePath`, `fileCategory_id`, `fileStatus`)
+VALUES
+    ("Feedback From Jakub Mazur", "docx", "files/feedback/Feedback From Jakub Mazur.docx", 2, "approved"),
+    ("Feedback From Rodrigo de Araújo Castanheira", "docx", "files/feedback/Feedback From Rodrigo de Araújo Castanheira", 2, "approved"),
+    ("Feedback From Michael Boateng", "docx", "files/feedback/Feedback From Michael Boateng.docx", 2, "approved"),
+    ("Feedback From Ai Nguyen", "docx", "files/feedback/Feedback From Ai Nguyen.docx", 1, "approved"),
+    ("Feedback From Aynur Tozluyurt", "docx", "files/feedback/Feedback From Aynur Tozluyurt.docx", 1, "approved"),
+    ("Feedback From Tamás Kiss", "docx", "files/feedback/Feedback From Tamás Kiss.docx", 1, "approved");
+
+--Adding files for the Presenting page. 13/01/2026
+
+INSERT INTO `file` (`fileName`, `fileFormat`, `filePath`, `fileCategory_id`, `fileStatus`)
+VALUES
+    ("Presentation - Y1P1", "pptx", "files/presenting/Sunny Socks Website.pptx", 1, "approved"),
+    ("Presentation Grading - Y1P1", "pdf", "files/presenting/2025-2026 Assessment form Presenting - IT IE - Tagged.pdf", 1, "approved"),
+    ("Presentation - Y1P2", "pptx", "files/presenting/Gemorskos Newspaper", 2, "approved"),
+    ("Presentation Grading - Y1P2", "pdf", "files/presenting/placeholder", 2, "approved");
+
+--Addinng files for the Professional Skills page. 13/01/2026
+
+
+INSERT INTO `file` (`fileName`, `fileFormat`, `filePath`, `fileCategory_id`, `fileStatus`)
+VALUES
+    ("Reflection Report - Y1P2", "docx", "files/proskills/Reflection Report - Y1P2.docx", 2, "approved"),
+    ("Study Career Coaching - Y1P2", "docx", "files/proskills/Study Career Coaching - Y1P2.docx", 2, "approved");

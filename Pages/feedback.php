@@ -1,5 +1,10 @@
 <?php
+
     require_once("../includes/authorise.php");
+    require_once("../dbconnect.php");
+
+    $userId = $_SESSION['userId'];
+    $userRole = $_SESSION['userRole'];
 ?>
 
 <!DOCTYPE html>
@@ -47,6 +52,26 @@
                         Fusce sit amet tortor vitae magna lobortis consectetur. 
                         Pellentesque fermentum, leo vitae maximus pulvinar.
                     </p>
+                    <p class="feedbackLink">
+                        <?php
+                            if($userRole === 'admin')
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Feedback From Rodrigo%' AND file.fileStatus = 'approved'");
+                                $stmt->execute();
+                            }
+                            else
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Feedback From Rodrigo%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
+                                $stmt->execute([$userId]);
+                            }
+
+                            $files = $stmt->fetchAll();
+
+                            foreach($files as $file) {
+                        ?>
+                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                            <?php } ?>
+                    </p>
                 </div>
                 <div class="feedbackInGrid">
                     <p class="feedbackTitle">
@@ -60,6 +85,26 @@
                         Morbi posuere sem a mi blandit, a eleifend felis ullamcorper. 
                         Fusce sit amet tortor vitae magna lobortis consectetur. 
                         Pellentesque fermentum, leo vitae maximus pulvinar.
+                    </p>
+                    <p class="feedbackLink">
+                        <?php
+                            if($userRole === 'admin')
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Feedback From Aynur%' AND file.fileStatus = 'approved'");
+                                $stmt->execute();
+                            }
+                            else
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Feedback From Aynur%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
+                                $stmt->execute([$userId]);
+                            }
+
+                            $files = $stmt->fetchAll();
+
+                            foreach($files as $file) {
+                        ?>
+                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                            <?php } ?>
                     </p>
                 </div>
             </div>
@@ -76,6 +121,26 @@
                         Morbi posuere sem a mi blandit, a eleifend felis ullamcorper. 
                         Fusce sit amet tortor vitae magna lobortis consectetur. 
                         Pellentesque fermentum, leo vitae maximus pulvinar.
+                    </p>
+                    <p class="feedbackLink">
+                        <?php
+                            if($userRole === 'admin')
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Feedback From Jakub%' AND file.fileStatus = 'approved'");
+                                $stmt->execute();
+                            }
+                            else
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Feedback From Jakub%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
+                                $stmt->execute([$userId]);
+                            }
+
+                            $files = $stmt->fetchAll();
+
+                            foreach($files as $file) {
+                        ?>
+                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                            <?php } ?>
                     </p>
                 </div>
                 <div class="feedbackInGrid">
@@ -91,6 +156,26 @@
                         Fusce sit amet tortor vitae magna lobortis consectetur. 
                         Pellentesque fermentum, leo vitae maximus pulvinar.
                     </p>
+                    <p class="feedbackLink">
+                        <?php
+                            if($userRole === 'admin')
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Feedback From Ai%' AND file.fileStatus = 'approved'");
+                                $stmt->execute();
+                            }
+                            else
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Feedback From Ai%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
+                                $stmt->execute([$userId]);
+                            }
+
+                            $files = $stmt->fetchAll();
+
+                            foreach($files as $file) {
+                        ?>
+                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                            <?php } ?>
+                    </p>
                 </div>
             </div>
             <div class="mainGridCol">
@@ -107,6 +192,26 @@
                         Fusce sit amet tortor vitae magna lobortis consectetur. 
                         Pellentesque fermentum, leo vitae maximus pulvinar.
                     </p>
+                    <p class="feedbackLink">
+                        <?php
+                            if($userRole === 'admin')
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Feedback From Michael%' AND file.fileStatus = 'approved'");
+                                $stmt->execute();
+                            }
+                            else
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Feedback From Michael%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
+                                $stmt->execute([$userId]);
+                            }
+
+                            $files = $stmt->fetchAll();
+
+                            foreach($files as $file) {
+                        ?>
+                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                            <?php } ?>
+                    </p>
                 </div>
                 <div class="feedbackInGrid">
                     <p class="feedbackTitle">
@@ -120,6 +225,26 @@
                         Morbi posuere sem a mi blandit, a eleifend felis ullamcorper. 
                         Fusce sit amet tortor vitae magna lobortis consectetur. 
                         Pellentesque fermentum, leo vitae maximus pulvinar.
+                    </p>
+                    <p class="feedbackLink">
+                        <?php
+                            if($userRole === 'admin')
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Feedback From Tamás%' AND file.fileStatus = 'approved'");
+                                $stmt->execute();
+                            }
+                            else
+                            {
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Feedback From Tamás%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
+                                $stmt->execute([$userId]);
+                            }
+
+                            $files = $stmt->fetchAll();
+
+                            foreach($files as $file) {
+                        ?>
+                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                            <?php } ?>
                     </p>
                 </div>
             </div>
