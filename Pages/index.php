@@ -24,9 +24,9 @@
                 <li><a href="proskills.php">Professional Skills</a></li>
                 <?php
                     if(isset($_SESSION['userId']))
-                        {
-                            echo "<li><a href='logout.php'>Log Out</a></li>";
-                        }
+                    {
+                        echo "<li><a href='logout.php'>Log Out</a></li>";
+                    }
                 ?>
             </ul>
         </div>

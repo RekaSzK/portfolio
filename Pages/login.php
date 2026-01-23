@@ -4,10 +4,10 @@
     require_once("../dbconnect.php");
 
     if(isset($_SESSION['userId']))
-        {
-            header("Location: index.php");
-            exit;
-        }
+    {
+        header("Location: index.php");
+        exit;
+    }
 
     $error = "";
 
@@ -22,11 +22,11 @@
         }
         else
         {
-            //Preparing statement using dbHandler
-            $stmt = $dbHandler->prepare("SELECT * FROM `user` WHERE `userName` = ?");
-            //Executing statement using $username as userName
-            $stmt->execute([$username]);
-            //Fetching results
+            
+            $stmt = $dbHandler->prepare("SELECT * FROM `user` WHERE `userName` = :userName");
+            $stmt->bindParam(":userName", $username, PDO::PARAM_STR);
+            $stmt->execute();
+            
             $user = $stmt->fetch();
 
             //Password verification
@@ -53,6 +53,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOG IN</title>
+    <link rel="icon" type="image/ico" href="../images/icon.png">
     <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
@@ -67,11 +68,11 @@
                 <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
                     <div class="formCategory">
                         <label for="username">Username:</label>
-                        <input type="text" name="username" id="username">
+                        <input type="text" name="username" id="username" autocomplete="username">
                     </div>
                     <div class="formCategory">
                         <label for="password">Password:</label>
-                        <input type="password" name="password" id="password">
+                        <input type="password" name="password" id="password" autocomplete="current-password">
                     </div>
                     <button id="loginButton" type="submit">Log In</button>
                 </form>

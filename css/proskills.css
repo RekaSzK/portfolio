@@ -8,9 +8,16 @@
     src: url(../fonts/raleway.bold.ttf);
 }
 
-body
+html, body
 {
     margin: 0;
+    height: 100%;
+}
+
+body
+{
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -30,7 +37,7 @@ header
     font-family: "Raleway Regular", "Arial";
     font-size: 24px;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: auto auto;
     align-items: center;
     margin: 0 3% 0 3%;
 }
@@ -130,6 +137,10 @@ main
     background-size: cover;
     background-color: white;
     padding: 3%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #mainGrid

@@ -29,9 +29,9 @@
                 <li><a href="proskills.php">Professional Skills</a></li>
                 <?php
                     if(isset($_SESSION['userId']))
-                        {
-                            echo "<li><a href='logout.php'>Log Out</a></li>";
-                        }
+                    {
+                        echo "<li><a href='logout.php'>Log Out</a></li>";
+                    }
                 ?>
             </ul>
         </div>
@@ -41,7 +41,7 @@
             <div class="mainGridCol">
                 <div class="feedbackInGrid">
                     <p class="feedbackTitle">
-                        <b>FEEDBACK FROM</b> :</br>P2 TEAMMATE
+                        <b>FEEDBACK FROM</b> :</br>Rodrigo de Araújo Castanheira
                     </p>
                     <p class="feedbackText">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
@@ -75,7 +75,7 @@
                 </div>
                 <div class="feedbackInGrid">
                     <p class="feedbackTitle">
-                        <b>FEEDBACK FROM</b> :</br>P1 TEAMMATE
+                        <b>FEEDBACK FROM</b> :</br>Aynur Tozluyurt
                     </p>
                     <p class="feedbackText">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
@@ -108,10 +108,10 @@
                     </p>
                 </div>
             </div>
-            <div class="mainGridCol">
+            <div class="mainGridCol" id="studyBuddyCol">
                 <div class="feedbackInGrid">
                     <p class="feedbackTitle">
-                        <b>FEEDBACK FROM</b> :</br>P2 TEAMMATE
+                        <b>FEEDBACK FROM</b> :</br>Flavius Petraşciuc
                     </p>
                     <p class="feedbackText">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
@@ -126,12 +126,12 @@
                         <?php
                             if($userRole === 'admin')
                             {
-                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Feedback From Jakub%' AND file.fileStatus = 'approved'");
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Feedback From Flavius%' AND file.fileStatus = 'approved'");
                                 $stmt->execute();
                             }
                             else
                             {
-                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Feedback From Jakub%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Feedback From Flavius%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
                                 $stmt->execute([$userId]);
                             }
 
@@ -145,7 +145,7 @@
                 </div>
                 <div class="feedbackInGrid">
                     <p class="feedbackTitle">
-                        <b>FEEDBACK FROM</b> :</br>P1 STUDY BUDDY
+                        <b>FEEDBACK FROM</b> :</br>Ai Nguyen
                     </p>
                     <p class="feedbackText">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
@@ -181,7 +181,7 @@
             <div class="mainGridCol">
                 <div class="feedbackInGrid">
                     <p class="feedbackTitle">
-                        <b>FEEDBACK FROM</b> :</br>P2 TEAMMATE
+                        <b>FEEDBACK FROM</b> :</br>Jakub Mazur
                     </p>
                     <p class="feedbackText">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
@@ -196,12 +196,12 @@
                         <?php
                             if($userRole === 'admin')
                             {
-                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Feedback From Michael%' AND file.fileStatus = 'approved'");
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Feedback From Jakub%' AND file.fileStatus = 'approved'");
                                 $stmt->execute();
                             }
                             else
                             {
-                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Feedback From Michael%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Feedback From Jakub%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
                                 $stmt->execute([$userId]);
                             }
 
@@ -215,7 +215,7 @@
                 </div>
                 <div class="feedbackInGrid">
                     <p class="feedbackTitle">
-                        <b>FEEDBACK FROM</b> :</br>P1 TEAMMATE
+                        <b>FEEDBACK FROM</b> :</br>Oleksii Khomiak
                     </p>
                     <p class="feedbackText">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
@@ -230,12 +230,12 @@
                         <?php
                             if($userRole === 'admin')
                             {
-                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Feedback From Tamás%' AND file.fileStatus = 'approved'");
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Feedback From Oleksii%' AND file.fileStatus = 'approved'");
                                 $stmt->execute();
                             }
                             else
                             {
-                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Feedback From Tamás%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
+                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Feedback From Oleksii%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
                                 $stmt->execute([$userId]);
                             }
 

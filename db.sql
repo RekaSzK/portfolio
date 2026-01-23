@@ -137,10 +137,17 @@ VALUES
     ("Presentation - Y1P2", "pptx", "files/presenting/Gemorskos Newspaper", 2, "approved"),
     ("Presentation Grading - Y1P2", "pdf", "files/presenting/placeholder", 2, "approved");
 
---Addinng files for the Professional Skills page. 13/01/2026
-
+--Adding files for the Professional Skills page. 13/01/2026
 
 INSERT INTO `file` (`fileName`, `fileFormat`, `filePath`, `fileCategory_id`, `fileStatus`)
 VALUES
     ("Reflection Report - Y1P2", "docx", "files/proskills/Reflection Report - Y1P2.docx", 2, "approved"),
     ("Study Career Coaching - Y1P2", "docx", "files/proskills/Study Career Coaching - Y1P2.docx", 2, "approved");
+
+--Updating file. 15/01/2026
+
+UPDATE `file`
+SET
+	`fileName` = 'Feedback From Oleksii Khomiak',
+    `filePath` = 'files/feedback/Feedback From Oleksii Khomiak.docx'
+WHERE `id` = 18;

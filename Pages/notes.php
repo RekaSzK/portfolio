@@ -29,9 +29,9 @@
                 <li><a href="proskills.php">Professional Skills</a></li>
                 <?php
                     if(isset($_SESSION['userId']))
-                        {
-                            echo "<li><a href='logout.php'>Log Out</a></li>";
-                        }
+                    {
+                        echo "<li><a href='logout.php'>Log Out</a></li>";
+                    }
                 ?>
             </ul>
         </div>
@@ -57,8 +57,7 @@
                 <div class="mainText">
                     <p class="textTitle">
                         <b>PLENARY NOTES</b> : The plenary takes place weekly and is a course-wide discussion about our progress, any difficulties and announcements. 
-                        The entirety of the IT year is present, as well as some lecturers.<br>
-                        Plenary notes taken by me:
+                        The entirety of the IT year is present, as well as some lecturers.
                     </p>
                     <ul class="textLinks">
                         <?php
@@ -86,8 +85,7 @@
                 <div class="mainText">
                     <p class="textTitle">
                         <b>MINUTES OF MEETINGS</b> : A 'minutes of meeting' refers to the notes taken by the note-taker (i. e. 'minute-taker') during meetings. 
-                        The note records attendance, discussed topics and decisions made.<br>
-                        Minutes, meeting agendas and schedules made by me:
+                        The note records attendance, discussed topics and decisions made.
                     </p>
                     <ul class="textLinks">
                         <?php

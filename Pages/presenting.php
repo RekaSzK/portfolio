@@ -29,9 +29,9 @@
                 <li><a href="proskills.php">Professional Skills</a></li>
                 <?php
                     if(isset($_SESSION['userId']))
-                        {
-                            echo "<li><a href='logout.php'>Log Out</a></li>";
-                        }
+                    {
+                        echo "<li><a href='logout.php'>Log Out</a></li>";
+                    }
                 ?>
             </ul>
         </div>
@@ -49,7 +49,7 @@
                             We aimed to create a clean, polished PowerPoint, to highlight the colourful nature of our website. 
                             Included were several images of the final look of our website, icons that had been used and the colour scheme.
                         </p>
-                        <p class="presentationLink">
+                        <ul class="presentationLink">
                             <?php
                                 if($userRole === 'admin')
                                 {
@@ -62,12 +62,10 @@
                                     $stmt->execute([$userId]);
                                 }
 
-                                $files = $stmt->fetchAll();
-
-                                foreach($files as $file) {
+                                $file = $stmt->fetch(PDO::FETCH_ASSOC);
                             ?>
-                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
-                            <?php } ?>
+
+                            <li class="queryLink"><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
 
                             <?php
                                 if($userRole === 'admin')
@@ -81,13 +79,12 @@
                                     $stmt->execute([$userId]);
                                 }
 
-                                $files = $stmt->fetchAll();
-
-                                foreach($files as $file) {
+                                $file = $stmt->fetch(PDO::FETCH_ASSOC);
                             ?>
-                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
-                            <?php } ?>
-                        </p>
+
+                            <li class="queryLink"><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                        
+                        </ul>
                     </div>
                 </div>
                 <div class="mainImg">
@@ -113,7 +110,7 @@
                             quisquam reprehenderit beatae rerum nisi deserunt tempora non cumque harum, 
                             earum accusamus consequuntur voluptate itaque iste?
                         </p>
-                        <p class="presentationLink">
+                        <ul class="presentationLink">
                             <?php
                                 if($userRole === 'admin')
                                 {
@@ -126,12 +123,10 @@
                                     $stmt->execute([$userId]);
                                 }
 
-                                $files = $stmt->fetchAll();
-
-                                foreach($files as $file) {
+                                $file = $stmt->fetch(PDO::FETCH_ASSOC);
                             ?>
-                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
-                            <?php } ?>
+
+                            <li class="queryLink"><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
 
                             <?php
                                 if($userRole === 'admin')
@@ -145,12 +140,11 @@
                                     $stmt->execute([$userId]);
                                 }
 
-                                $files = $stmt->fetchAll();
-
-                                foreach($files as $file) {
+                                $file = $stmt->fetch(PDO::FETCH_ASSOC);
                             ?>
-                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
-                            <?php } ?>
+
+                            <li class="queryLink"><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+
                         </p>
                     </div>
                 </div>
