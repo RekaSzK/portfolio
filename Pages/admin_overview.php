@@ -1,5 +1,15 @@
 <?php
     require_once("../includes/admin_authorise.php");
+
+    function displayDate()
+    {
+        date_default_timezone_set("Europe/Amsterdam");
+
+        $today = date("Y-m-d");
+        $currentTime = date("H:i:s");
+
+        return [$today, $currentTime];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +31,12 @@
                 <li><a href="presenting.php">Presenting</a></li>
                 <li><a href="proskills.php">Professional Skills</a></li>
                 <?php
+                    if($_SESSION['userRole'] == "admin")
+                    {
+                        echo "<li id='currentPage'>Admin</li>";
+                    }
+                ?>
+                <?php
                     if(isset($_SESSION['userId']))
                     {
                         echo "<li><a href='logout.php'>Log Out</a></li>";
@@ -31,14 +47,16 @@
     </header>
     <main>
         <div id="mainGrid">
-            <div class="gridMainOuter" id="gridTtimeDate">
+
+            <div class="gridMainOuter" id="gridTimeDate">
                 <div class="gridMainMiddle">
-                    <div class="gridMainInner">
-                        <p>Time:</p>
-                        <p>Date:</p>
+                    <div class="gridMainInner" id="timeDate">
+                        <p id="time">Time: <?php echo displayDate()[1]; ?></p>
+                        <p id="date">Date: <?php echo displayDate()[0]; ?></p>
                     </div>
                 </div>
             </div>
+
             <div class="gridMainOuter" id="gridGreeting">
                 <div class="gridMainMiddle">
                     <div class="gridMainInner">
@@ -51,13 +69,33 @@
                     </div>
                 </div>
             </div>
+
             <div class="gridMainOuter" id="gridToDo">
                 <div class="gridMainMiddle">
                     <div class="gridMainInner">
                         <p class="fieldTitle">To Do:</p>
+                        <ul id="toDoList">
+                            <li>
+                                <input type="checkbox" id="todo1">
+                                <label for="todo1">Blur effect on page background with cursor pointer effect</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="todo2">
+                                <label for="todo2">Fileuploader on admin side</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="todo3">
+                                <label for="todo3">Ferrari 2026 WDC trust xx</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="todo4">
+                                <label for="todo4">Change DB - no enum for userRole</label>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
+
             <div class="gridMainOuter" id="gridLatestUpdate">
                 <div class="gridMainMiddle">
                     <div class="gridMainInner">
@@ -65,6 +103,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="gridMainOuter" id="gridLatestUpload">
                 <div class="gridMainMiddle">
                     <div class="gridMainInner">
@@ -72,6 +111,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="gridMainOuter" id="gridManageDatabase">
                 <div class="gridMainMiddle">
                     <div class="gridMainInner">
@@ -79,6 +119,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="gridMainOuter" id="gridTBA">
                 <div class="gridMainMiddle">
                     <div class="gridMainInner">
@@ -86,7 +127,33 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </main>
 </body>
 </html>
+<script>
+    function updateTime()
+    {
+        const now = new Date();
+
+        const time = now.toLocaleTimeString([],
+        {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false,
+        });
+
+        const timeDisplay = document.getElementById('time');
+        console.log(timeDisplay)
+
+        if(timeDisplay)
+        {
+            timeDisplay.textContent = `Time: ${time}`;
+        }
+    }
+
+    setInterval(()=> {updateTime();}, 1000);
+    
+</script>

@@ -28,6 +28,12 @@
                 <li><a href="presenting.php">Presenting</a></li>
                 <li><a href="proskills.php">Professional Skills</a></li>
                 <?php
+                    if($_SESSION['userRole'] == "admin")
+                    {
+                        echo "<li><a href='admin_overview.php'>Admin</a></li>";
+                    }
+                ?>
+                <?php
                     if(isset($_SESSION['userId']))
                     {
                         echo "<li><a href='logout.php'>Log Out</a></li>";

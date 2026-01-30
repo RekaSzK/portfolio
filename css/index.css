@@ -190,11 +190,12 @@ main
 {
     width: 15%;
     padding-top: 10px;
+    transition: transform .3s ease-in-out;
 }
 
 #githubIcon:hover, #linkedinIcon:hover
 {
-    width: 20%;
+    transform: scale(1.2);
 }
 
 /*Setting up transitions and hover effects for the card.*/

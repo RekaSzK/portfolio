@@ -28,6 +28,12 @@
                 <li id="currentPage">Presenting</li>
                 <li><a href="proskills.php">Professional Skills</a></li>
                 <?php
+                    if($_SESSION['userRole'] == "admin")
+                    {
+                        echo "<li><a href='admin_overview.php'>Admin</a></li>";
+                    }
+                ?>
+                <?php
                     if(isset($_SESSION['userId']))
                     {
                         echo "<li><a href='logout.php'>Log Out</a></li>";
@@ -105,10 +111,22 @@
                             <b>YEAR 1, PERIOD 2</b> : PROJECT DATABASE APPLICATION MANAGEMENT
                         </p>
                         <p class="textParagraph">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Cum consectetur dignissimos et reiciendis molestias, 
-                            quisquam reprehenderit beatae rerum nisi deserunt tempora non cumque harum, 
-                            earum accusamus consequuntur voluptate itaque iste?
+                            The final assessment did not require a presentation, as it was a group effort. 
+                            The project concluded with a success as all three team members passed.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="mainRow">
+                <div class="mainText">
+                    <div class="mainTextInner">
+                        <p class="textTitle">
+                            <b>YEAR 1, PERIOD 2</b> : PROFESSIONAL SKILLS ASSESSMENT
+                        </p>
+                        <p class="textParagraph">
+                            The presentation was created by me and aimed to showcase my experience during the first semester at university. 
+                            I highlighted differences between the education I had been used to, compared to the one I am receiving. 
+                            The colour scheme and designs reflected my personal taste, as well as the presenting style.
                         </p>
                         <ul class="presentationLink">
                             <?php
@@ -144,12 +162,16 @@
                             ?>
 
                             <li class="queryLink"><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
-
-                        </p>
+                        
+                        </ul>
+                    </div>
+                </div>
+                <div class="mainImg">
+                    <div class="mainImgInner">
+                        <img id ="" src="" alt="">
                     </div>
                 </div>
             </div>
-            <!-- Add new entries here. -->
         </div>
     </main>
 </body>

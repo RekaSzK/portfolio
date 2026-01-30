@@ -23,6 +23,12 @@
                 <li><a href="presenting.php">Presenting</a></li>
                 <li><a href="proskills.php">Professional Skills</a></li>
                 <?php
+                    if($_SESSION['userRole'] == "admin")
+                    {
+                        echo "<li><a href='admin_overview.php'>Admin</a></li>";
+                    }
+                ?>
+                <?php
                     if(isset($_SESSION['userId']))
                     {
                         echo "<li><a href='logout.php'>Log Out</a></li>";
@@ -62,8 +68,8 @@
             <div id="mainRight">
                 <div id="mainRightImage">
                     <img id="portrait" src="../images/portrait.jpg" alt="Portrait">
-                    <a href="https://github.com/RekaSzK"><img id="githubIcon" src="../images/githubicon.png" alt="GitHub Icon"></a>
-                    <a href="https://www.linkedin.com/in/r%C3%A9ka-szunyogh-kocsis-993849180/"><img id="linkedinIcon" src="../images/linkedinicon.png" alt="Linked In Icon"></a>
+                    <a target="_blank" href="https://github.com/RekaSzK"><img id="githubIcon" src="../images/githubicon.png" alt="GitHub Icon"></a>
+                    <a target="_blank" href="https://www.linkedin.com/in/r%C3%A9ka-szunyogh-kocsis-993849180/"><img id="linkedinIcon" src="../images/linkedinicon.png" alt="Linked In Icon"></a>
                 </div>
             </div>
         </div>

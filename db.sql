@@ -151,3 +151,43 @@ SET
 	`fileName` = 'Feedback From Oleksii Khomiak',
     `filePath` = 'files/feedback/Feedback From Oleksii Khomiak.docx'
 WHERE `id` = 18;
+
+--Deleting unnecessary record. 30/01/2026
+
+DELETE FROM `file`
+WHERE id = 21;
+
+--Updating placeholder filePath. 30/01/2026
+
+UPDATE `file`
+SET `filePath` = "files/presenting/2025-2026 Assessment form Presenting Group 1B.pdf"
+WHERE `id` = 22;
+
+--Updating filePath. 30/01/2026
+
+UPDATE `file`
+SET `filePath` = "files/presenting/2025-2026 Assessment form Presenting Group 1E.pdf"
+WHERE `id` = 20;
+
+--Fixing error. 30/01/2026
+
+UPDATE `file`
+SET `filePath` = "files/presenting/2025-2026 Assessment form Presenting ProSkills Assessment.pdf"
+WHERE `id` = 22;
+
+--Adding portfolio presentation to database. 30/01/2026
+
+INSERT INTO `file` (`fileName`, `fileFormat`, `filePath`, `fileCategory_id`, `fileStatus`)
+VALUES ("Presentation - Y1P2", "pptx", "files/presenting/Portfolio Presentation", 2, "approved");
+
+--Fixing linking. 30/01/2026
+
+UPDATE `file`
+SET `fileName` = "files/presenting/Portfolio Presentation.pptx"
+WHERE `id` = 25;
+
+--Fixing mistake. 30/01/2026
+
+UPDATE `file`
+SET `fileName` = "Presentation - Y1P2", `filePath` = "files/presenting/Portfolio Presentation.pptx"
+WHERE `id` = 25;
