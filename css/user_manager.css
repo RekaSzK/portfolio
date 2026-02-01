@@ -8,9 +8,16 @@
     src: url(../fonts/raleway.bold.ttf);
 }
 
-body
+html, body
 {
     margin: 0;
+    height: 100%;
+}
+
+body
+{
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -130,167 +137,118 @@ main
     background-size: cover;
     background-color: white;
     padding: 3%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-/*Setting up the grid system.*/
 #mainGrid
 {
+    width: 80vw;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    align-items: stretch;
     font-family: "Raleway Regular";
     font-size: 20px;
-}
-
-.gridMainOuter
-{
-    display: grid;
     background-color: white;
-    box-sizing: border-box;
-    height: 100%;
     padding: 20px;
 }
 
-.gridMainMiddle
+.innerField
 {
     background-color: #D9D9D9;
-    box-sizing: border-box;
-    height: 100%;
     padding: 20px;
+    display: flex;
 }
 
-.gridMainInner
+.modifyField
 {
     background-color: white;
-    box-sizing: border-box;
-    height: 100%;
     padding: 20px;
-}
-
-#gridTimeDate
-{
-    grid-area: 1 / 1 / 2 / 2;
-}
-
-#timeDate
-{
+    flex: 1;
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    font-family: "Raleway Bold";
-}
-
-#date
-{
-    margin-top: 0;
-}
-
-#gridGreeting
-{
-    grid-area: 1 / 2 / 2 / 4;
-}
-
-#gridToDo
-{
-    grid-area: 1 / 4 / 3 / 5;
-}
-
-/*Creating functional to-do list.*/
-#toDoList
-{
-    list-style: none;
-    padding: 0;
-}
-
-#toDoList > li
-{
-    margin-bottom: 12px;
-}
-
-#toDoList > li > input[type="checkbox"]
-{
-    display: none;
-}
-
-#toDoList > li > label
-{
-    cursor: pointer;
-    display: inline-block;
-    color: #000;
-    text-decoration: none;
-}
-
-#toDoList > li > input[type="checkbox"]:checked + label
-{
-    color: #9a9a9a;
-    text-decoration: line-through;
-}
-
-
-#gridLatestUpdate
-{
-    grid-area: 2 / 1 / 3 / 3;
-}
-
-#gridLatestUpload
-{
-    grid-area: 2 / 3 / 3 / 4;
-}
-
-#gridManageDatabase
-{
-    grid-area: 3 / 1 / 5 / 3;
-}
-
-#gridTBA
-{
-    grid-area: 3 / 3 / 5 / 5;
-}
-/*Grid system set up end.*/
-
-#adminGreeting
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Raleway Bold";
-    font-size: 30px;
-}
-
-.fieldSubtitle
-{
-    display: flex;
-    align-items: center;
-    font-family: "Raleway Regular";
-    font-size: 20px;
-    font-style: italic;
-}
-
-#adminSubtitle
-{
-    justify-content: center;
 }
 
 .fieldTitle
 {
+    text-align: center;
+    margin: 0 0 10px 0;
+    font-style: italic;
     font-family: "Raleway Bold";
-    margin: 0;
 }
 
-#manager
+form
+{
+    border-top: 1px solid #D9D9D9;
+}
+
+#errors, #success
+{
+    font-family: "Raleway Regular";
+    font-size: 20px;
+    padding: 20px;
+    margin: 20px 0 0 0;
+    border-radius: 8px;
+}
+
+#errors
+{
+    color: red;
+    background-color: rgb(255, 200, 200);
+    border: 1px solid red;
+}
+
+#errors > ul
 {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
-#manager > li
+#success
 {
-    padding: 5px 0px 5px 0px;
+    color: green;
+    background-color: rgb(188, 255, 188);
+    border: 1px solid green;
+}
+
+#noMargin
+{
+    margin: 0;
+}
+
+#bottomGrid
+{
+    width: 80vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
+}
+
+#backToOverview
+{
+    font-family: "Raleway Regular";
+    font-size: 20px;
+}
+
+/*Setting up transitions and hover effects for the cards.*/
+
+.modifyField
+{
+    /*Horizontal offset, vertical offset, blur radius, colour and transparency.*/
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition:
+        box-shadow 0.25s ease-in-out,
+        transform 0.25s ease-in-out;
 }
 
 /*To disable the default styling of the anchor.*/
-#manager > li > a
+#backToOverview > a
 {
     color: inherit;
     text-decoration: none;
@@ -302,14 +260,14 @@ main
 }
 
 /*Changing font weight while hovering.*/
-#manager > li > a:hover
+#backToOverview > a:hover
 {
     /*color: #6A89A7;*/
     font-weight: bold;
 }
 
 /*Underline effect.*/
-#manager > li > a::after
+#backToOverview > a::after
 {
     content: "";
     position: absolute;
@@ -323,7 +281,7 @@ main
 }
 
 /*Making sure the line goes all the way across.*/
-#manager > li > a:hover::after
+#backToOverview > a:hover::after
 {
     width: 100%;
 }

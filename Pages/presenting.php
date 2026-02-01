@@ -168,7 +168,7 @@
                 </div>
                 <div class="mainImg">
                     <div class="mainImgInner">
-                        <img id ="" src="" alt="">
+                        <img id ="" src="../images/portfolio.png" alt="Portfolio Presentation">
                     </div>
                 </div>
             </div>

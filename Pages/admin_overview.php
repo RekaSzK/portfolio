@@ -63,7 +63,7 @@
                         <p id="adminGreeting">
                             Welcome Back, Admin.
                         </p>
-                        <p id="adminSubtitle">
+                        <p class="fieldSubtitle" id="adminSubtitle">
                             What can I help you with today?
                         </p>
                     </div>
@@ -91,6 +91,10 @@
                                 <input type="checkbox" id="todo4">
                                 <label for="todo4">Change DB - no enum for userRole</label>
                             </li>
+                            <li>
+                                <input type="checkbox" id="todo5">
+                                <label for="todo5">Hover effects for all cards</label>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -116,6 +120,13 @@
                 <div class="gridMainMiddle">
                     <div class="gridMainInner">
                         <p class="fieldTitle">Manage Database:</p>
+                        <p class="fieldSubtitle">&#8212; Manage entries:</p>
+                        <ul id="manager">
+                            <li><a href="user_manager.php">Manage Users</a> &#8212; <a href="users_overview.php">Users Overview</a></li>
+                            <li>Manage Files</li>
+                            <li>Manage File Permissions</li>
+                            <li>Manage Categories</li>
+                        </ul>
                     </div>
                 </div>
             </div>

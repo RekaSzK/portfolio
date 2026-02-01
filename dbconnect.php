@@ -8,6 +8,6 @@
     }
     catch(Exception $ex)
     {
-        echo $ex;
+        die("Database could not be reached. Error: " . $ex->getMessage());
     }
 ?>
