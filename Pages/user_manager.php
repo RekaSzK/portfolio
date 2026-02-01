@@ -55,7 +55,7 @@
     {
         $id = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT);
 
-        if($id == NULL ||$id == FALSE)
+        if($id == NULL || $id == FALSE)
         {
             array_push($errors, "Invalid user ID.");
         }
@@ -112,7 +112,7 @@
     {
         $id = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT);
 
-        if($id == NULL ||$id == FALSE)
+        if($id == NULL || $id == FALSE)
         {
             array_push($errors, "Invalid user ID.");
             return;

@@ -123,7 +123,7 @@
                         <p class="fieldSubtitle">&#8212; Manage entries:</p>
                         <ul id="manager">
                             <li><a href="user_manager.php">Manage Users</a> &#8212; <a href="users_overview.php">Users Overview</a></li>
-                            <li>Manage Files</li>
+                            <li><a href="file_manager.php">Manage Files</a> &#8212; <a href="files_overview.php">Files Overview</a></li>
                             <li>Manage File Permissions</li>
                             <li>Manage Categories</li>
                         </ul>
