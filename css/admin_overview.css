@@ -290,7 +290,7 @@ main
 }
 
 /*To disable the default styling of the anchor.*/
-#manager > li > a
+#manager > li > a, #latestUploadLink
 {
     color: inherit;
     text-decoration: none;
@@ -302,14 +302,14 @@ main
 }
 
 /*Changing font weight while hovering.*/
-#manager > li > a:hover
+#manager > li > a:hover, #latestUploadLink:hover
 {
     /*color: #6A89A7;*/
     font-weight: bold;
 }
 
 /*Underline effect.*/
-#manager > li > a::after
+#manager > li > a::after, #latestUploadLink::after
 {
     content: "";
     position: absolute;
@@ -323,7 +323,12 @@ main
 }
 
 /*Making sure the line goes all the way across.*/
-#manager > li > a:hover::after
+#manager > li > a:hover::after, #latestUploadLink:hover::after
 {
     width: 100%;
+}
+
+#latestUploadLink
+{
+    margin: 20px 20px 20px 0;
 }

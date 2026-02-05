@@ -20,22 +20,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USERS OVERVIEW</title>
+    <link rel="stylesheet" href="../css/users_overview.css">
 </head>
 <body>
-    <h1>Users Overview</h1>
-    <table>
-        <tr>
-            <th>User ID</th>
-            <th>Username</th>
-            <th>User role</th>
-        </tr>
-        <?php foreach($users as $user): ?>
+    <header>
+        <div id="headerGrid">
+            <div id="headerHome">
+                <a href="index.php">HOME</a>
+            </div>
+            <ul id="headerList">
+                <li><a href="feedback.php">Feedback</a></li>
+                <li><a href="notes.php">Notes</a></li>
+                <li><a href="presenting.php">Presenting</a></li>
+                <li><a href="proskills.php">Professional Skills</a></li>
+                <?php
+                    if($_SESSION['userRole'] == "admin")
+                    {
+                        echo "<li><a href='admin_overview.php'>Admin</a></li>";
+                    }
+                ?>
+                <?php
+                    if(isset($_SESSION['userId']))
+                    {
+                        echo "<li><a href='logout.php'>Log Out</a></li>";
+                    }
+                ?>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <h1>Users Overview</h1>
+        <table>
             <tr>
-                <td><?php echo htmlspecialchars($user['id']); ?></td>
-                <td><?php echo htmlspecialchars($user['userName']); ?></td>
-                <td><?php echo htmlspecialchars($user['userRole']); ?></td>
-            <tr>
-        <?php endforeach; ?>
-    </table>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>User role</th>
+            </tr>
+            <?php foreach($users as $user): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($user['id']); ?></td>
+                    <td><?php echo htmlspecialchars($user['userName']); ?></td>
+                    <td><?php echo htmlspecialchars($user['userRole']); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    </main>
 </body>
 </html>

@@ -224,6 +224,7 @@ form
 #bottomGrid
 {
     width: 80vw;
+    min-height: 30vh;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-content: center;

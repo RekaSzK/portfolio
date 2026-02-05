@@ -1,4 +1,5 @@
 <?php
+    require_once("../dbconnect.php");
     require_once("../includes/admin_authorise.php");
 
     function displayDate()
@@ -112,6 +113,27 @@
                 <div class="gridMainMiddle">
                     <div class="gridMainInner">
                         <p class="fieldTitle">Latest Upload:</p>
+                        <?php
+                            try
+                            {
+                                $stmt = $dbHandler->prepare("
+                                SELECT id, fileName, filePath
+                                FROM `file`
+                                ORDER BY id DESC
+                                LIMIT 1");
+                                $stmt->execute();
+                                $latestUpload = $stmt->fetch(PDO::FETCH_ASSOC);
+                            }
+                            catch(Exception $ex)
+                            {
+                                echo "File could not be retrieved. Error: " . $ex->getMessage();
+                            }
+
+                            if($latestUpload): ?>
+                                <a id="latestUploadLink" href="<?php echo htmlspecialchars($latestUpload['filePath']); ?>"><?php echo htmlspecialchars($latestUpload['fileName']); ?></a>
+                            <?php else: ?>
+                                <p>No files uploaded yet.</p>
+                            <?php endif; ?>
                     </div>
                 </div>
             </div>

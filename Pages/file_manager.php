@@ -6,7 +6,7 @@
 
     $successMessage = "";
 
-    function addUser($dbHandler, &$errors, &$successMessage) //The & makes it so that the function is pass by reference, not by value. This ensures that the $errors array and $successMessage are actually modified not just within the function, but outside of it too.
+    function addFile($dbHandler, &$errors, &$successMessage) //The & makes it so that the function is pass by reference, not by value. This ensures that the $errors array and $successMessage are actually modified not just within the function, but outside of it too.
     {
         $fileName = filter_input(INPUT_POST, "fileName", FILTER_SANITIZE_SPECIAL_CHARS);
         $fileFormat = filter_input(INPUT_POST, "fileFormat", FILTER_SANITIZE_SPECIAL_CHARS);
