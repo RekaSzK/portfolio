@@ -239,6 +239,13 @@ main
     width: 100%;
 }
 
+.mainText
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /*Setting up transitions and hover effects for the cards.*/
 
 .mainTextInner, .mainImgInner

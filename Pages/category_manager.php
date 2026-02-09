@@ -103,7 +103,9 @@
 
         try
         {
-            $stmt = $dbHandler->prepare("DELETE FROM `category` WHERE id = :id");
+            $stmt = $dbHandler->prepare("
+            DELETE FROM `category` 
+            WHERE id = :id");
             $stmt->bindParam(":id", $id, PDO::PARAM_INT);
             $stmt->execute();
 
@@ -157,18 +159,8 @@
                 <li><a href="notes.php">Notes</a></li>
                 <li><a href="presenting.php">Presenting</a></li>
                 <li><a href="proskills.php">Professional Skills</a></li>
-                <?php
-                    if(isset($_SESSION['role']) && $_SESSION['role'] == "admin")
-                    {
-                        echo "<li><a href='admin_overview.php'>Admin</a></li>";
-                    }
-                ?>
-                <?php
-                    if(isset($_SESSION['userId']))
-                    {
-                        echo "<li><a href='logout.php'>Log Out</a></li>";
-                    }
-                ?>
+                <li><a href='admin_overview.php'>Admin</a></li>
+                <li><a href='logout.php'>Log Out</a></li>
             </ul>
         </div>
     </header>

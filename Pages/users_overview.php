@@ -4,7 +4,10 @@
 
     try
     {
-        $stmt = $dbHandler->prepare("SELECT * FROM `user`");
+        $stmt = $dbHandler->prepare("
+        SELECT user.id, user.userName, role.roleName 
+        FROM `user`
+            JOIN `role` ON user.role_id = role.id");
         $stmt->execute();
 
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -33,18 +36,8 @@
                 <li><a href="notes.php">Notes</a></li>
                 <li><a href="presenting.php">Presenting</a></li>
                 <li><a href="proskills.php">Professional Skills</a></li>
-                <?php
-                    if(isset($_SESSION['role']) && $_SESSION['role'] == "admin")
-                    {
-                        echo "<li><a href='admin_overview.php'>Admin</a></li>";
-                    }
-                ?>
-                <?php
-                    if(isset($_SESSION['userId']))
-                    {
-                        echo "<li><a href='logout.php'>Log Out</a></li>";
-                    }
-                ?>
+                <li><a href='admin_overview.php'>Admin</a></li>
+                <li><a href='logout.php'>Log Out</a></li>
             </ul>
         </div>
     </header>
@@ -60,7 +53,7 @@
                 <tr>
                     <td><?php echo htmlspecialchars($user['id']); ?></td>
                     <td><?php echo htmlspecialchars($user['userName']); ?></td>
-                    <td><?php echo htmlspecialchars($user['userRole']); ?></td>
+                    <td><?php echo htmlspecialchars($user['roleName']); ?></td>
                 </tr>
             <?php endforeach; ?>
         </table>

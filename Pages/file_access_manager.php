@@ -5,8 +5,9 @@
     $errors = array();
 
     $successMessage = "";
-
-    function addFileAccess($dbHandler, &$errors, &$successMessage) //The & makes it so that the function is pass by reference, not by value. This ensures that the $errors array and $successMessage are actually modified not just within the function, but outside of it too.
+    
+    //The & makes it so that the function is pass by reference, not by value. This ensures that the $errors array and $successMessage are actually modified not just within the function, but outside of it too.
+    function addFileAccess($dbHandler, &$errors, &$successMessage) 
     {
         $user_id = filter_input(INPUT_POST, "user_id", FILTER_VALIDATE_INT);
         $file_id = filter_input(INPUT_POST, "file_id", FILTER_VALIDATE_INT);
@@ -103,7 +104,9 @@
 
         try
         {
-            $stmt = $dbHandler->prepare("DELETE FROM `file_access` WHERE id = :id");
+            $stmt = $dbHandler->prepare("
+            DELETE FROM `file_access` 
+            WHERE id = :id");
             $stmt->bindParam(":id", $id, PDO::PARAM_INT);
             $stmt->execute();
 
@@ -157,18 +160,8 @@
                 <li><a href="notes.php">Notes</a></li>
                 <li><a href="presenting.php">Presenting</a></li>
                 <li><a href="proskills.php">Professional Skills</a></li>
-                <?php
-                    if(isset($_SESSION['role']) && $_SESSION['role'] == "admin")
-                    {
-                        echo "<li><a href='admin_overview.php'>Admin</a></li>";
-                    }
-                ?>
-                <?php
-                    if(isset($_SESSION['userId']))
-                    {
-                        echo "<li><a href='logout.php'>Log Out</a></li>";
-                    }
-                ?>
+                <li><a href='admin_overview.php'>Admin</a></li>
+                <li><a href='logout.php'>Log Out</a></li>
             </ul>
         </div>
     </header>

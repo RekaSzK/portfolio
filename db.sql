@@ -249,3 +249,9 @@ MODIFY `role_id` INT NOT NULL;
 
 INSERT INTO `role` (`roleName`)
 VALUES ("study career coach");
+
+--Fixing file download. 09/02/2026
+
+UPDATE `file` 
+SET filePath = "files/feedback/Feedback From Rodrigo de Araújo Castanheira.docx"
+WHERE id = 14;

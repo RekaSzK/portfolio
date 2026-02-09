@@ -16,8 +16,13 @@
     $userId = $_SESSION['userId'];
     $role = $_SESSION['role'];
 
-    $stmt = $dbHandler->prepare("SELECT * FROM `file` WHERE id = ? AND fileStatus = 'approved'");
-    $stmt->execute([$fileId]);
+    $stmt = $dbHandler->prepare("
+    SELECT * 
+    FROM `file` 
+    WHERE id = :id 
+    AND fileStatus = 'approved'");
+    $stmt->bindParam(":id", $fileId, PDO::PARAM_INT);
+    $stmt->execute();
     $file = $stmt->fetch();
 
     if(!$file)
@@ -27,8 +32,15 @@
 
     if($role !== "admin")
     {
-        $stmt = $dbHandler->prepare("SELECT * FROM `file_access` WHERE file_id = ? AND user_id = ?");
-        $stmt->execute([$fileId, $userId]);
+        $stmt = $dbHandler->prepare("
+        SELECT * 
+        FROM `file_access` 
+        WHERE file_id = :file_id 
+        AND user_id = :user_id");
+        $stmt->bindParam(":file_id", $fileId, PDO::PARAM_INT);
+        $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+
         if(!$stmt->fetch())
         {
             die("You do not have access to this file.");

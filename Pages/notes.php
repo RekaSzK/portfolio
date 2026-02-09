@@ -4,7 +4,7 @@
     require_once("../dbconnect.php");
 
     $userId = $_SESSION['userId'];
-    $userRole = $_SESSION['role'];
+    $role = $_SESSION['role'];
 ?>
 
 <!DOCTYPE html>
@@ -67,23 +67,34 @@
                     </p>
                     <ul class="textLinks">
                         <?php
-                            if($userRole === 'admin')
+                            if($role == 'admin')
                             {
-                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Minutes of Meetings%' AND file.fileStatus = 'approved'");
+                                $stmt = $dbHandler->prepare("
+                                SELECT file.id, file.fileName 
+                                FROM `file` 
+                                WHERE file.fileName LIKE '%Minutes of Meetings%' 
+                                AND file.fileStatus = 'approved'");
                                 $stmt->execute();
                             }
                             else
                             {
-                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Minutes of Mettings%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
-                                $stmt->execute([$userId]);
+                                $stmt = $dbHandler->prepare("
+                                SELECT file.id, file.fileName 
+                                FROM `file` 
+                                    JOIN `file_access` ON file.id = file_access.file_id 
+                                WHERE file.fileName LIKE '%Minutes of Mettings%' 
+                                AND file.fileStatus = 'approved' AND file_access.user_id = :user_id");
+                                $stmt->bindParam(":user_id", $userId, PDO::PARAM_INT);
+                                $stmt->execute();
                             }
 
                             $files = $stmt->fetchAll();
 
-                            foreach($files as $file) {
-                        ?>
+                            foreach($files as $file): ?>
+
                             <li><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></li>
-                            <?php }; ?>
+                            
+                            <?php endforeach; ?>
                     </ul>
                 </div>
             </div>
@@ -95,23 +106,35 @@
                     </p>
                     <ul class="textLinks">
                         <?php
-                            if($userRole === 'admin')
+                            if($role == 'admin')
                             {
-                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE (file.fileName LIKE '%Consultation%' OR file.fileName LIKE '%Agenda%' OR file.fileName LIKE '%Interview%') AND file.fileStatus = 'approved'");
+                                $stmt = $dbHandler->prepare("
+                                SELECT file.id, file.fileName 
+                                FROM `file` 
+                                WHERE (file.fileName LIKE '%Consultation%' OR file.fileName LIKE '%Agenda%' OR file.fileName LIKE '%Interview%') 
+                                AND file.fileStatus = 'approved'");
                                 $stmt->execute();
                             }
                             else
                             {
-                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE (file.fileName LIKE '%Consultation%' OR file.fileName LIKE '%Agenda%' OR file.fileName LIKE '%Interview%') AND file.fileStatus = 'approved' AND file_access.user_id = ?");
-                                $stmt->execute([$userId]);
+                                $stmt = $dbHandler->prepare("
+                                SELECT file.id, file.fileName 
+                                FROM `file` 
+                                    JOIN `file_access` ON file.id = file_access.file_id 
+                                WHERE (file.fileName LIKE '%Consultation%' OR file.fileName LIKE '%Agenda%' OR file.fileName LIKE '%Interview%') 
+                                AND file.fileStatus = 'approved' 
+                                AND file_access.user_id = :user_id");
+                                $stmt->bindParam(":user_id", $userId, PDO::PARAM_INT);
+                                $stmt->execute();
                             }
 
                             $files = $stmt->fetchAll();
 
-                            foreach($files as $file) {
-                        ?>
+                            foreach($files as $file): ?>
+
                             <li><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></li>
-                            <?php }; ?>
+                            
+                            <?php endforeach; ?>
                     </ul>
                 </div>
             </div>
@@ -123,23 +146,35 @@
                     </p>
                     <ul class="textLinks">
                         <?php
-                            if($userRole === 'admin')
+                            if($role == 'admin')
                             {
-                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file WHERE file.fileName LIKE '%Code of Conduct%' OR file.fileName LIKE '%Project Plan%' AND file.fileStatus = 'approved'");
+                                $stmt = $dbHandler->prepare("
+                                SELECT file.id, file.fileName 
+                                FROM `file` 
+                                WHERE file.fileName LIKE '%Code of Conduct%' OR file.fileName LIKE '%Project Plan%' 
+                                AND file.fileStatus = 'approved'");
                                 $stmt->execute();
                             }
                             else
                             {
-                                $stmt = $dbHandler->prepare("SELECT file.id, file.fileName FROM file JOIN file_access ON file.id = file_access.file_id WHERE file.fileName LIKE '%Code of Conduct%' OR file.fileName LIKE '%Project Plan%' AND file.fileStatus = 'approved' AND file_access.user_id = ?");
-                                $stmt->execute([$userId]);
+                                $stmt = $dbHandler->prepare("
+                                SELECT file.id, file.fileName 
+                                FROM `file`
+                                    JOIN `file_access` ON file.id = file_access.file_id 
+                                WHERE file.fileName LIKE '%Code of Conduct%' OR file.fileName LIKE '%Project Plan%' 
+                                AND file.fileStatus = 'approved' 
+                                AND file_access.user_id = :user_id");
+                                $stmt->bindParam(":user_id", $userId, PDO::PARAM_INT);
+                                $stmt->execute();
                             }
 
                             $files = $stmt->fetchAll();
 
-                            foreach($files as $file) {
-                        ?>
+                            foreach($files as $file): ?>
+
                             <li><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></li>
-                            <?php }; ?>
+                            
+                            <?php endforeach; ?>
                     </ul>
                 </div>
             </div>
