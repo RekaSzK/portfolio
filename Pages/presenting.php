@@ -4,7 +4,7 @@
     require_once("../dbconnect.php");
 
     $userId = $_SESSION['userId'];
-    $userRole = $_SESSION['userRole'];
+    $userRole = $_SESSION['role'];
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +28,7 @@
                 <li id="currentPage">Presenting</li>
                 <li><a href="proskills.php">Professional Skills</a></li>
                 <?php
-                    if($_SESSION['userRole'] == "admin")
+                    if(isset($_SESSION['role']) && $_SESSION['role'] == "admin")
                     {
                         echo "<li><a href='admin_overview.php'>Admin</a></li>";
                     }

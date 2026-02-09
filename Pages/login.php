@@ -23,7 +23,10 @@
         else
         {
             
-            $stmt = $dbHandler->prepare("SELECT * FROM `user` WHERE `userName` = :userName");
+            $stmt = $dbHandler->prepare("
+            SELECT user.id, user.userName, user.password, role.roleName 
+            FROM `user` INNER JOIN `role` ON user.role_id = role.id 
+            WHERE user.userName = :userName");
             $stmt->bindParam(":userName", $username, PDO::PARAM_STR);
             $stmt->execute();
             
@@ -34,7 +37,7 @@
             {
                 $_SESSION['userId'] = $user['id'];
                 $_SESSION['userName'] = $user['userName'];
-                $_SESSION['userRole'] = $user['userRole'];
+                $_SESSION['role'] = $user['roleName'];
 
                 header("Location: index.php");
                 exit;
@@ -78,7 +81,7 @@
                 </form>
                 <div id="errorsContainer">
                     <?php
-                        if (!empty($error))
+                        if(!empty($error))
                         {
                             echo "<p id='errorOutput'>" . $error . "</p>";
                         }

@@ -4,7 +4,7 @@
     require_once("../dbconnect.php");
 
     $userId = $_SESSION['userId'];
-    $userRole = $_SESSION['userRole'];
+    $userRole = $_SESSION['role'];
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +28,7 @@
                 <li><a href="presenting.php">Presenting</a></li>
                 <li id="currentPage">Professional Skills</a></li>
                 <?php
-                    if($_SESSION['userRole'] == "admin")
+                    if(isset($_SESSION['role']) && $_SESSION['role'] == "admin")
                     {
                         echo "<li><a href='admin_overview.php'>Admin</a></li>";
                     }
@@ -50,9 +50,9 @@
                         <b>REFLECTION REPORT</b> : Year 1, Semester 1
                     </p>
                     <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                        Optio, explicabo praesentium voluptas provident adipisci rerum id iusto expedita alias? 
-                        Neque dicta eveniet aperiam saepe delectus dignissimos, facilis sed libero voluptatibus.
+                        To conclude Year 1, Periods 1 and 2, a Reflection Report was created. In it. I reflect on the experience 
+                        I had, the learning experience and the community. I found it important to talk about the difference between 
+                        the education I received at home compared to the one here in the Netherlands.
                     </p>
                     <p class="filesLink">
                         <?php
@@ -79,12 +79,11 @@
             <div class="mainField">
                 <div class="mainText">
                     <P class="textTitle">
-                        <b>STUDY CAREER COACHING</b>
+                        <b>STUDY CAREER COACHING</b> : Year 1, Semester 1
                     </p>
                     <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                        Optio, explicabo praesentium voluptas provident adipisci rerum id iusto expedita alias? 
-                        Neque dicta eveniet aperiam saepe delectus dignissimos, facilis sed libero voluptatibus.
+                        This document contains a short description of my satisfaction with the learning outcomes and states that 
+                        I intend to continue with my student career at NHL Stenden.
                     </P>
                     <p class="filesLink">
                         <?php

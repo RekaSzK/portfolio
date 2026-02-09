@@ -158,7 +158,7 @@
                 <li><a href="presenting.php">Presenting</a></li>
                 <li><a href="proskills.php">Professional Skills</a></li>
                 <?php
-                    if($_SESSION['userRole'] == "admin")
+                    if(isset($_SESSION['role']) && $_SESSION['role'] == "admin")
                     {
                         echo "<li><a href='admin_overview.php'>Admin</a></li>";
                     }

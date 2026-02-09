@@ -14,7 +14,7 @@
 
     $fileId = (int)$_GET['file_id'];
     $userId = $_SESSION['userId'];
-    $userRole = $_SESSION['userRole'];
+    $role = $_SESSION['role'];
 
     $stmt = $dbHandler->prepare("SELECT * FROM `file` WHERE id = ? AND fileStatus = 'approved'");
     $stmt->execute([$fileId]);
@@ -25,7 +25,7 @@
         die("File not found or not approved.");
     }
 
-    if($userRole !== "admin")
+    if($role !== "admin")
     {
         $stmt = $dbHandler->prepare("SELECT * FROM `file_access` WHERE file_id = ? AND user_id = ?");
         $stmt->execute([$fileId, $userId]);

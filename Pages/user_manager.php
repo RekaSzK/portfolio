@@ -9,14 +9,14 @@
     function addUser($dbHandler, &$errors, &$successMessage) //The & makes it so that the function is pass by reference, not by value. This ensures that the $errors array and $successMessage are actually modified not just within the function, but outside of it too.
     {
         $userName = filter_input(INPUT_POST, "userName", FILTER_SANITIZE_SPECIAL_CHARS);
-        $userRole = filter_input(INPUT_POST, "userRole", FILTER_SANITIZE_SPECIAL_CHARS);
+        $role = filter_input(INPUT_POST, "role", FILTER_SANITIZE_SPECIAL_CHARS);
         $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
 
         if(empty($userName))
         {
             array_push($errors, "Please enter a username.");
         }
-        if(empty($userRole))
+        if(empty($role))
         {
             array_push($errors, "Please enter a user role.");
         }
@@ -32,17 +32,17 @@
             try
             {
                 $stmt = $dbHandler->prepare("
-                INSERT INTO `user` (userName, userRole, password)
-                VALUES (:userName, :userRole, :password)
+                INSERT INTO `user` (userName, role, password)
+                VALUES (:userName, :role, :password)
                 ");
                 $stmt->bindParam(":userName", $userName, PDO::PARAM_STR);
-                $stmt->bindParam(":userRole", $userRole, PDO::PARAM_STR);
+                $stmt->bindParam(":role", $role, PDO::PARAM_STR);
                 $stmt->bindParam(":password", $hashedPass, PDO::PARAM_STR);
                 $stmt->execute();
 
                 $successMessage = "<p id='noMargin'>User added successfully.</p>
                 Username: $userName</br>
-                User role: $userRole</br>";
+                User role: $role</br>";
             }
             catch(Exception $ex)
             {
@@ -61,14 +61,14 @@
         }
 
         $userName = filter_input(INPUT_POST, "userName", FILTER_SANITIZE_SPECIAL_CHARS);
-        $userRole = filter_input(INPUT_POST, "userRole", FILTER_SANITIZE_SPECIAL_CHARS);
+        $role = filter_input(INPUT_POST, "role", FILTER_SANITIZE_SPECIAL_CHARS);
         $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
 
         if(empty($userName))
         {
             array_push($errors, "Please enter a username.");
         }
-        if(empty($userRole))
+        if(empty($role))
         {
             array_push($errors, "Please enter a user role.");
         }
@@ -86,12 +86,12 @@
                 $stmt = $dbHandler->prepare("
                 UPDATE `user` SET 
                 userName = :userName, 
-                userRole = :userRole, 
+                role = :role, 
                 password = :password
                 WHERE id = :id
                 ");
                 $stmt->bindParam(":userName", $userName, PDO::PARAM_STR);
-                $stmt->bindParam(":userRole", $userRole, PDO::PARAM_STR);
+                $stmt->bindParam(":role", $role, PDO::PARAM_STR);
                 $stmt->bindParam(":password", $hashedPass, PDO::PARAM_STR);
                 $stmt->bindParam(":id", $id, PDO::PARAM_INT);
                 $stmt->execute();
@@ -99,7 +99,7 @@
                 $successMessage = "<p id='noMargin'>User edited successfully.</p>
                 User ID: $id</br>
                 Username: $userName</br>
-                User role: $userRole</br>";
+                User role: $role</br>";
             }
             catch(Exception $ex)
             {
@@ -175,7 +175,7 @@
                 <li><a href="presenting.php">Presenting</a></li>
                 <li><a href="proskills.php">Professional Skills</a></li>
                 <?php
-                    if($_SESSION['userRole'] == "admin")
+                    if(isset($_SESSION['role']) && $_SESSION['role'] == "admin")
                     {
                         echo "<li><a href='admin_overview.php'>Admin</a></li>";
                     }
@@ -200,8 +200,8 @@
                             <input type="text" name="userName" id="userName">
                         </p>
                         <p>
-                            <label for="userRole">User role:</label>
-                            <input type="text" name="userRole" id="userRole">
+                            <label for="role">User role:</label>
+                            <input type="text" name="role" id="role">
                         </p>
                         <p>
                             <label for="password">Password:</label>
@@ -226,8 +226,8 @@
                             <input type="text" name="userName" id="userName">
                         </p>
                         <p>
-                            <label for="userRole">User role:</label>
-                            <input type="text" name="userRole" id="userRole">
+                            <label for="role">User role:</label>
+                            <input type="text" name="role" id="role">
                         </p>
                         <p>
                             <label for="password">Password:</label>
