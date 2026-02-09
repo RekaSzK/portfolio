@@ -103,7 +103,7 @@
             }
             catch(Exception $ex)
             {
-                die("User could not be added. Error: " . $ex->getMessage());
+                die("User could not be edited. Error: " . $ex->getMessage());
             }
         }
     }
@@ -161,7 +161,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USER MANAGER</title>
-    <link rel="stylesheet" href="../css/user_manager.css">
+    <link rel="stylesheet" href="../css/manager.css">
 </head>
 <body>
     <header>

@@ -50,13 +50,7 @@
                         <b>FEEDBACK FROM</b> :</br>Rodrigo de Araújo Castanheira
                     </p>
                     <p class="feedbackText">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Etiam lorem magna, auctor vel eleifend id, tristique sed purus. 
-                        Proin ornare sollicitudin tincidunt. In facilisis nisl sapien, a rutrum velit porta vitae. 
-                        Aenean urna orci, sollicitudin venenatis lorem sed, aliquam consequat eros. 
-                        Morbi posuere sem a mi blandit, a eleifend felis ullamcorper. 
-                        Fusce sit amet tortor vitae magna lobortis consectetur. 
-                        Pellentesque fermentum, leo vitae maximus pulvinar.
+                        <i>Teammate during <b>Project Database Management</b> in Year 1, Period 2</i>
                     </p>
                     <p class="feedbackLink">
                         <?php
@@ -84,13 +78,7 @@
                         <b>FEEDBACK FROM</b> :</br>Aynur Tozluyurt
                     </p>
                     <p class="feedbackText">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Etiam lorem magna, auctor vel eleifend id, tristique sed purus. 
-                        Proin ornare sollicitudin tincidunt. In facilisis nisl sapien, a rutrum velit porta vitae. 
-                        Aenean urna orci, sollicitudin venenatis lorem sed, aliquam consequat eros. 
-                        Morbi posuere sem a mi blandit, a eleifend felis ullamcorper. 
-                        Fusce sit amet tortor vitae magna lobortis consectetur. 
-                        Pellentesque fermentum, leo vitae maximus pulvinar.
+                        <i>Teammate during <b>Project Web Development</b> in Year 1, Period 1</i>
                     </p>
                     <p class="feedbackLink">
                         <?php
@@ -120,13 +108,7 @@
                         <b>FEEDBACK FROM</b> :</br>Flavius Petraşciuc
                     </p>
                     <p class="feedbackText">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Etiam lorem magna, auctor vel eleifend id, tristique sed purus. 
-                        Proin ornare sollicitudin tincidunt. In facilisis nisl sapien, a rutrum velit porta vitae. 
-                        Aenean urna orci, sollicitudin venenatis lorem sed, aliquam consequat eros. 
-                        Morbi posuere sem a mi blandit, a eleifend felis ullamcorper. 
-                        Fusce sit amet tortor vitae magna lobortis consectetur. 
-                        Pellentesque fermentum, leo vitae maximus pulvinar.
+                        <i>Study buddy during <b>Project Database Management</b> in Year 1, Period 2</i>
                     </p>
                     <p class="feedbackLink">
                         <?php
@@ -154,13 +136,7 @@
                         <b>FEEDBACK FROM</b> :</br>Ai Nguyen
                     </p>
                     <p class="feedbackText">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Etiam lorem magna, auctor vel eleifend id, tristique sed purus. 
-                        Proin ornare sollicitudin tincidunt. In facilisis nisl sapien, a rutrum velit porta vitae. 
-                        Aenean urna orci, sollicitudin venenatis lorem sed, aliquam consequat eros. 
-                        Morbi posuere sem a mi blandit, a eleifend felis ullamcorper. 
-                        Fusce sit amet tortor vitae magna lobortis consectetur. 
-                        Pellentesque fermentum, leo vitae maximus pulvinar.
+                        <i>Study buddy during <b>Project Web Development</b> in Year 1, Period 1</i>
                     </p>
                     <p class="feedbackLink">
                         <?php
@@ -190,13 +166,7 @@
                         <b>FEEDBACK FROM</b> :</br>Jakub Mazur
                     </p>
                     <p class="feedbackText">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Etiam lorem magna, auctor vel eleifend id, tristique sed purus. 
-                        Proin ornare sollicitudin tincidunt. In facilisis nisl sapien, a rutrum velit porta vitae. 
-                        Aenean urna orci, sollicitudin venenatis lorem sed, aliquam consequat eros. 
-                        Morbi posuere sem a mi blandit, a eleifend felis ullamcorper. 
-                        Fusce sit amet tortor vitae magna lobortis consectetur. 
-                        Pellentesque fermentum, leo vitae maximus pulvinar.
+                        <i>Teammate during <b>Project Database Management</b> in Year 1, Period 2</i>
                     </p>
                     <p class="feedbackLink">
                         <?php
@@ -224,13 +194,7 @@
                         <b>FEEDBACK FROM</b> :</br>Oleksii Khomiak
                     </p>
                     <p class="feedbackText">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Etiam lorem magna, auctor vel eleifend id, tristique sed purus. 
-                        Proin ornare sollicitudin tincidunt. In facilisis nisl sapien, a rutrum velit porta vitae. 
-                        Aenean urna orci, sollicitudin venenatis lorem sed, aliquam consequat eros. 
-                        Morbi posuere sem a mi blandit, a eleifend felis ullamcorper. 
-                        Fusce sit amet tortor vitae magna lobortis consectetur. 
-                        Pellentesque fermentum, leo vitae maximus pulvinar.
+                        <i>Teammate during <b>Project Database Management</b> in Year 1, Period 1</i>
                     </p>
                     <p class="feedbackLink">
                         <?php

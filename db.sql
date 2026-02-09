@@ -191,3 +191,61 @@ WHERE `id` = 25;
 UPDATE `file`
 SET `fileName` = "Presentation - Y1P2", `filePath` = "files/presenting/Portfolio Presentation.pptx"
 WHERE `id` = 25;
+
+--Fixing category name. 07/02/2026
+
+UPDATE `category`
+SET categoryName = "Project BattleBot"
+WHERE id = 3
+
+--To add an `id`column to file_access, we can drop the table.. 07/02/2026
+
+DROP TABLE `file_access`;
+
+CREATE TABLE `file_access` (
+    `id` INT AUTO_INCREMENT,
+    `user_id` INT NOT NULL,
+    `file_id` INT NOT NULL,
+    CONSTRAINT PK_file_access PRIMARY KEY(`id`),
+    CONSTRAINT FK_file_access_user_id FOREIGN KEY(`user_id`) REFERENCES `user`(`id`)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT FK_file_access_file_id FOREIGN KEY(`file_id`) REFERENCES `file`(`id`)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+
+--Changing userRole to role_id instead of ENUM. 07/02/2026
+
+CREATE TABLE `role` (
+    `id` INT AUTO_INCREMENT,
+    `roleName` VARCHAR(100) NOT NULL,
+    CONSTRAINT PK_role PRIMARY KEY(`id`)
+);
+
+INSERT INTO `role` (`roleName`)
+VALUES ("admin"), ("visitor"), ("lecturer"), ("student");
+
+ALTER TABLE `user`
+ADD COLUMN `role_id` INT NULL;
+
+UPDATE `user`
+JOIN `role` ON user.userRole = role.roleName
+SET user.role_id = role.id;
+
+ALTER TABLE `user`
+ADD
+    CONSTRAINT FK_user_roleName FOREIGN KEY (`role_id`) REFERENCES `role`(`id`)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE;
+
+ALTER TABLE `user`
+DROP COLUMN `userRole`;
+
+ALTER TABLE `user`
+MODIFY `role_id` INT NOT NULL;
+
+--Adding role. 07/02/2026
+
+INSERT INTO `role` (`roleName`)
+VALUES ("study career coach");

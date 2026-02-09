@@ -131,7 +131,7 @@
             }
             catch(Exception $ex)
             {
-                die("File could not be added. Error: " . $ex->getMessage());
+                die("File could not be edited. Error: " . $ex->getMessage());
             }
         }
     }
@@ -189,7 +189,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FILE MANAGER</title>
-    <link rel="stylesheet" href="../css/file_manager.css">
+    <link rel="stylesheet" href="../css/manager.css">
 </head>
 <body>
     <header>
@@ -292,7 +292,7 @@
                             <input type="text" name="id" id="delete_id">
                         </p>
                         <p>
-                            <button type="submit" name="action" value="delete">Delete User</button>
+                            <button type="submit" name="action" value="delete">Delete File</button>
                         </p>
                     </form>
                 </div>

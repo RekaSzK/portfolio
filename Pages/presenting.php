@@ -89,7 +89,6 @@
                             ?>
 
                             <li class="queryLink"><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
-                        
                         </ul>
                     </div>
                 </div>
@@ -102,7 +101,7 @@
             <div class="mainRow">
                 <div class="mainImg">
                     <div class="mainImgInner">
-                        <img id="TBA" src="TBA" alt="TBA">
+                        <img id="gemorskosImg" src="../images/gemorskos.png" alt="Image of the Gemorskos Homepage on Windows Client">
                     </div>
                 </div>
                 <div class="mainText">
@@ -162,13 +161,29 @@
                             ?>
 
                             <li class="queryLink"><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
-                        
                         </ul>
                     </div>
                 </div>
                 <div class="mainImg">
                     <div class="mainImgInner">
                         <img id ="" src="../images/portfolio.png" alt="Portfolio Presentation">
+                    </div>
+                </div>
+            </div>
+            <div class="mainRow">
+                <div class="mainImg">
+                    <div class="mainImgInner">
+                        <img id="TBA" src="TBA" alt="TBA">
+                    </div>
+                </div>
+                <div class="mainText">
+                    <div class="mainTextInner">
+                        <p class="textTitle">
+                            <b>YEAR 1, PERIOD 3</b> : PROJECT BATTLEBOT
+                        </p>
+                        <p class="textParagraph">
+                            The project is still ongoing.
+                        </p>
                     </div>
                 </div>
             </div>

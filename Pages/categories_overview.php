@@ -4,14 +4,14 @@
 
     try
     {
-        $stmt = $dbHandler->prepare("SELECT * FROM `user`");
+        $stmt = $dbHandler->prepare("SELECT * FROM `category`");
         $stmt->execute();
 
-        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     catch(Exception $ex)
     {
-        die("Users could not be retrived. Error: " . $ex->getMessage());
+        die("Categories could not be retrived. Error: " . $ex->getMessage());
     }
 ?>
 <!DOCTYPE html>
@@ -19,7 +19,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>USERS OVERVIEW</title>
+    <title>CATEGORIES OVERVIEW</title>
     <link rel="stylesheet" href="../css/overview.css">
 </head>
 <body>
@@ -49,18 +49,18 @@
         </div>
     </header>
     <main>
-        <h1>Users Overview</h1>
+        <h1>Categories Overview</h1>
         <table>
             <tr>
-                <th>User ID</th>
-                <th>Username</th>
-                <th>User role</th>
+                <th>Category ID</th>
+                <th>Category name</th>
+                <th>Category year ID</th>
             </tr>
-            <?php foreach($users as $user): ?>
+            <?php foreach($categories as $category): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($user['id']); ?></td>
-                    <td><?php echo htmlspecialchars($user['userName']); ?></td>
-                    <td><?php echo htmlspecialchars($user['userRole']); ?></td>
+                    <td><?php echo htmlspecialchars($category['id']); ?></td>
+                    <td><?php echo htmlspecialchars($category['categoryName']); ?></td>
+                    <td><?php echo htmlspecialchars($category['categoryYear_id']); ?></td>
                 </tr>
             <?php endforeach; ?>
         </table>
