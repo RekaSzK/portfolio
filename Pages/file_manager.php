@@ -6,12 +6,15 @@
 
     $successMessage = "";
 
+    $acceptedFileTypesExtensions = [
+        "application/pdf" => "pdf", "application/vnd.openxmlformats-officedocument.presentationml.presentation" => "pptx", 
+        "application/msword" => "doc", "application/vnd.openxmlformats-officedocument.wordprocessingml.document" => "docx"];
+
     //The & makes it so that the function is pass by reference, not by value. This ensures that the $errors array and $successMessage are actually modified not just within the function, but outside of it too.
-    function addFile($dbHandler, &$errors, &$successMessage) 
+    function addFile($dbHandler, &$errors, &$successMessage, $acceptedFileTypesExtensions) 
     {
         $fileName = filter_input(INPUT_POST, "fileName", FILTER_SANITIZE_SPECIAL_CHARS);
-        $fileFormat = filter_input(INPUT_POST, "fileFormat", FILTER_SANITIZE_SPECIAL_CHARS);
-        $filePath = filter_input(INPUT_POST, "filePath", FILTER_SANITIZE_SPECIAL_CHARS);
+        $chosenDirectory = filter_input(INPUT_POST, "chosenDirectory");
         $fileCategory_id = filter_input(INPUT_POST, "fileCategory_id", FILTER_VALIDATE_INT);
         $fileStatus = filter_input(INPUT_POST, "fileStatus", FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -19,13 +22,9 @@
         {
             array_push($errors, "Please enter a file name.");
         }
-        if(empty($fileFormat))
+        if(empty($chosenDirectory))
         {
-            array_push($errors, "Please enter a file format.");
-        }
-        if(empty($filePath))
-        {
-            array_push($errors, "Please enter a file path.");
+            array_push($errors, "Please choose directory.");
         }
         if(empty($fileCategory_id) || $fileCategory_id == FALSE)
         {
@@ -35,48 +34,107 @@
         {
             array_push($errors, "Please enter a file status.");
         }
+        if(!isset($_FILES['uploadedFile']) || $_FILES['uploadedFile']['error'] !== 0)
+        {
+            array_push($errors, "Error when uploading file.");
+        }
 
         if(empty($errors))
         {
-            try
-            {
-                $stmt = $dbHandler->prepare("
-                INSERT INTO `file` (fileName, fileFormat, filePath, fileCategory_id, fileStatus)
-                VALUES (:fileName, :fileFormat, :filePath, :fileCategory_id, :fileStatus)
-                ");
-                $stmt->bindParam(":fileName", $fileName, PDO::PARAM_STR);
-                $stmt->bindParam(":fileFormat", $fileFormat, PDO::PARAM_STR);
-                $stmt->bindParam(":filePath", $filePath, PDO::PARAM_STR);
-                $stmt->bindParam(":fileCategory_id", $fileCategory_id, PDO::PARAM_INT);
-                $stmt->bindParam(":fileStatus", $fileStatus, PDO::PARAM_STR);
-                $stmt->execute();
+            $fileMime = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $_FILES['uploadedFile']['tmp_name']);
 
-                $successMessage = "<p id='noMargin'>File added successfully.</p>
-                File name: $fileName</br>
-                File format: $fileFormat</br>
-                File path: $filePath</br>
-                File category ID: $fileCategory_id</br>
-                File status: $fileStatus</br>";
-            }
-            catch(Exception $ex)
+            if(array_key_exists($fileMime, $acceptedFileTypesExtensions))
             {
-                die("File could not be added. Error: " . $ex->getMessage());
+                $fileFormat = $acceptedFileTypesExtensions[$fileMime];
+                $fullFileName = $fileName . "." . $fileFormat;
+                
+                if(!file_exists("../files/" . $chosenDirectory . "/" . $fullFileName))
+                {
+                    $filePath = "../files/" . $chosenDirectory . "/" . $fullFileName;
+
+                    if(move_uploaded_file($_FILES['uploadedFile']['tmp_name'], $filePath))
+                    {
+                        try
+                        {
+                            $newFilePath = "files/" . $chosenDirectory . "/" . $fullFileName;
+                            $stmt = $dbHandler->prepare("
+                            INSERT INTO `file` (fileName, fileFormat, filePath, fileCategory_id, fileStatus)
+                            VALUES (:fileName, :fileFormat, :newFilePath, :fileCategory_id, :fileStatus)
+                            ");
+                            $stmt->bindParam(":fileName", $fileName, PDO::PARAM_STR);
+                            $stmt->bindParam(":fileFormat", $fileFormat, PDO::PARAM_STR);
+                            $stmt->bindParam(":newFilePath", $newFilePath, PDO::PARAM_STR);
+                            $stmt->bindParam(":fileCategory_id", $fileCategory_id, PDO::PARAM_INT);
+                            $stmt->bindParam(":fileStatus", $fileStatus, PDO::PARAM_STR);
+                            $stmt->execute();
+
+                            $successMessage = "<p id='noMargin'>File added successfully.</p>
+                            File name: $fileName</br>
+                            File format: $fileFormat</br>
+                            File path: $newFilePath</br>
+                            File category ID: $fileCategory_id</br>
+                            File status: $fileStatus</br>";
+                        }
+                        catch(Exception $ex)
+                        {
+                            die("File could not be added. Error: " . $ex->getMessage());
+                        }
+                    }
+                    else
+                    {
+                        echo "File could not be moved.";
+                    }
+                }
+                else
+                {
+                    echo "File with that name already exists in directory.";
+                }
+            }
+            else
+            {
+                echo "File type not accepted.";
             }
         }
     }
 
-    function editFile($dbHandler, &$errors, &$successMessage)
+    function editFile($dbHandler, &$errors, &$successMessage, $acceptedFileTypesExtensions)
     {
         $id = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT);
 
         if($id == NULL || $id == FALSE)
         {
             array_push($errors, "Invalid file ID.");
+            return;
+        }
+
+        try
+        {
+            $stmt = $dbHandler->prepare("
+            SELECT * 
+            FROM `file` 
+            WHERE id = :id");
+            $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $existingFile = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if($existingFile == FALSE)
+            {
+                echo "File not found.";
+                return;
+            }
+            else
+            {
+                $oldFilePath = $existingFile['filePath'];
+            }
+        }
+        catch(Exception $ex)
+        {
+            die("Could not retrieve file to be updated. Error: " . $ex->getMessage());
         }
 
         $fileName = filter_input(INPUT_POST, "fileName", FILTER_SANITIZE_SPECIAL_CHARS);
-        $fileFormat = filter_input(INPUT_POST, "fileFormat", FILTER_SANITIZE_SPECIAL_CHARS);
-        $filePath = filter_input(INPUT_POST, "filePath", FILTER_SANITIZE_SPECIAL_CHARS);
+        $chosenDirectory = filter_input(INPUT_POST, "chosenDirectory");
         $fileCategory_id = filter_input(INPUT_POST, "fileCategory_id", FILTER_VALIDATE_INT);
         $fileStatus = filter_input(INPUT_POST, "fileStatus", FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -84,13 +142,9 @@
         {
             array_push($errors, "Please enter a file name.");
         }
-        if(empty($fileFormat))
+        if(empty($chosenDirectory))
         {
-            array_push($errors, "Please enter a file format.");
-        }
-        if(empty($filePath))
-        {
-            array_push($errors, "Please enter a file path.");
+            array_push($errors, "Please choose directory.");
         }
         if(empty($fileCategory_id) || $fileCategory_id == FALSE)
         {
@@ -100,39 +154,72 @@
         {
             array_push($errors, "Please enter a file status.");
         }
+        if(!isset($_FILES['uploadedFile']) || $_FILES['uploadedFile']['error'] !== 0)
+        {
+            array_push($errors, "Error when uploading file.");
+        }
 
         if(empty($errors))
         {
-            try
-            {
-                $stmt = $dbHandler->prepare("
-                UPDATE `file` SET 
-                fileName = :fileName, 
-                fileFormat = :fileFormat, 
-                filePath = :filePath,
-                fileCategory_id = :fileCategory_id,
-                fileStatus = :fileStatus
-                WHERE id = :id
-                ");
-                $stmt->bindParam(":fileName", $fileName, PDO::PARAM_STR);
-                $stmt->bindParam(":fileFormat", $fileFormat, PDO::PARAM_STR);
-                $stmt->bindParam(":filePath", $filePath, PDO::PARAM_STR);
-                $stmt->bindParam(":fileCategory_id", $fileCategory_id, PDO::PARAM_INT);
-                $stmt->bindParam(":fileStatus", $fileStatus, PDO::PARAM_STR);
-                $stmt->bindParam(":id", $id, PDO::PARAM_INT);
-                $stmt->execute();
+            $fileMime = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $_FILES['uploadedFile']['tmp_name']);
 
-                $successMessage = "<p id='noMargin'>File edited successfully.</p>
-                File ID: $id</br>
-                File name: $fileName</br>
-                File format: $fileFormat</br>
-                File path: $filePath</br>
-                File category ID: $fileCategory_id</br>
-                File status: $fileStatus</br>";
-            }
-            catch(Exception $ex)
+            if(array_key_exists($fileMime, $acceptedFileTypesExtensions))
             {
-                die("File could not be edited. Error: " . $ex->getMessage());
+                $fileFormat = $acceptedFileTypesExtensions[$fileMime];
+                $fullFileName = $fileName . "." . $fileFormat;
+
+                $filePath = "../files/" . $chosenDirectory . "/" . $fullFileName;
+                
+                if(move_uploaded_file($_FILES['uploadedFile']['tmp_name'], $filePath))
+                {
+                    $absoluteOldPath = "../" . $oldFilePath;
+
+                    if(file_exists($absoluteOldPath))
+                    {
+                        unlink($absoluteOldPath);
+                    }
+
+                    try
+                    {
+                        $newFilePath = "files/" . $chosenDirectory . "/" . $fullFileName;
+                        $stmt = $dbHandler->prepare("
+                        UPDATE `file` SET 
+                        fileName = :fileName, 
+                        fileFormat = :fileFormat, 
+                        filePath = :newFilePath,
+                        fileCategory_id = :fileCategory_id,
+                        fileStatus = :fileStatus
+                        WHERE id = :id
+                        ");
+                        $stmt->bindParam(":fileName", $fileName, PDO::PARAM_STR);
+                        $stmt->bindParam(":fileFormat", $fileFormat, PDO::PARAM_STR);
+                        $stmt->bindParam(":newFilePath", $newFilePath, PDO::PARAM_STR);
+                        $stmt->bindParam(":fileCategory_id", $fileCategory_id, PDO::PARAM_INT);
+                        $stmt->bindParam(":fileStatus", $fileStatus, PDO::PARAM_STR);
+                        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+                        $stmt->execute();
+
+                        $successMessage = "<p id='noMargin'>File edited successfully.</p>
+                        File ID: $id</br>
+                        File name: $fileName</br>
+                        File format: $fileFormat</br>
+                        File path: $newFilePath</br>
+                        File category ID: $fileCategory_id</br>
+                        File status: $fileStatus</br>";
+                    }
+                    catch(Exception $ex)
+                    {
+                        die("File could not be edited. Error: " . $ex->getMessage());
+                    }
+                }
+                else
+                {
+                    echo "File could not be moved.";
+                }
+            }
+            else
+            {
+                echo "File type not accepted.";
             }
         }
     }
@@ -145,6 +232,30 @@
         {
             array_push($errors, "Invalid file ID.");
             return;
+        }
+
+        try
+        {
+            $stmt = $dbHandler->prepare("
+            SELECT filePath 
+            FROM `file` 
+            WHERE id = :id");
+            $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $fileToBeDeleted = $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+        catch(Exception $ex)
+        {
+            echo "File to be deleted could not be found. Error: " . $ex->getMessage();
+            return;
+        }
+
+        $absolutePath = "../" . $fileToBeDeleted['filePath'];
+
+        if (file_exists($absolutePath))
+        {
+            unlink($absolutePath);
         }
 
         try
@@ -170,11 +281,11 @@
 
         if($action == "add")
         {
-            addFile($dbHandler, $errors, $successMessage);
+            addFile($dbHandler, $errors, $successMessage, $acceptedFileTypesExtensions);
         }
         elseif($action == "edit")
         {
-            editFile($dbHandler, $errors, $successMessage);
+            editFile($dbHandler, $errors, $successMessage, $acceptedFileTypesExtensions);
         }
         elseif($action == "delete")
         {
@@ -215,18 +326,24 @@
             <div class="innerField">
                 <div class="modifyField">
                     <p class="fieldTitle">Add File</p>
-                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
+                        <p>
+                            <label for="uploadedFile">Choose File:</label>
+                            <input type="file" name="uploadedFile" id="uploadedFile">
+                        </p>
+                        <p>
+                            <label for="chosenDirectory">Choose Directory:</label>
+                            <select id="chosenDirectory" name="chosenDirectory">
+                                <option value="" selected disabled>Select an option</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="notes">Notes</option>
+                                <option value="presenting">Presenting</option>
+                                <option value="proskills">Proskills</option>
+                            </select>
+                        </p>
                         <p>
                             <label for="fileName">File name:</label>
                             <input type="text" name="fileName" id="fileName">
-                        </p>
-                        <p>
-                            <label for="fileFormat">File format:</label>
-                            <input type="text" name="fileFormat" id="fileFormat">
-                        </p>
-                        <p>
-                            <label for="filePath">File path:</label>
-                            <input type="text" name="filePath" id="filePath">
                         </p>
                         <p>
                             <label for="fileCategory_id">File category ID:</label>
@@ -245,22 +362,28 @@
             <div class="innerField">
                 <div class="modifyField">
                     <p class="fieldTitle">Edit File</p>
-                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
                         <p>
                             <label for="id">File ID:</label>
                             <input type="text" name="id" id="edit_id">
                         </p>
                         <p>
+                            <label for="uploadedFile">Choose File:</label>
+                            <input type="file" name="uploadedFile" id="uploadedFile">
+                        </p>
+                        <p>
+                            <label for="chosenDirectory">Choose Directory:</label>
+                            <select id="chosenDirectory" name="chosenDirectory">
+                                <option value="" selected disabled>Select an option</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="notes">Notes</option>
+                                <option value="presenting">Presenting</option>
+                                <option value="proskills">Proskills</option>
+                            </select>
+                        </p>
+                        <p>
                             <label for="fileName">File name:</label>
                             <input type="text" name="fileName" id="fileName">
-                        </p>
-                        <p>
-                            <label for="fileFormat">File format:</label>
-                            <input type="text" name="fileFormat" id="fileFormat">
-                        </p>
-                        <p>
-                            <label for="filePath">File path:</label>
-                            <input type="text" name="filePath" id="filePath">
                         </p>
                         <p>
                             <label for="fileCategory_id">File category ID:</label>

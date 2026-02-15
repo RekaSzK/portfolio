@@ -82,7 +82,7 @@
 
                             foreach($files as $file): ?>
 
-                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                            <p class="queryLink"><a href="file_viewer.php?id=<?php echo (int)$file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
                             
                             <?php endforeach; ?>
                     </p>
@@ -125,7 +125,7 @@
 
                             foreach($files as $file): ?>
 
-                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                            <p class="queryLink"><a href="file_viewer.php?id=<?php echo (int)$file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
                             
                             <?php endforeach; ?>
                     </p>

@@ -66,23 +66,20 @@
                             else
                             {
                                 $stmt = $dbHandler->prepare("
-                                SELECT file.id, file.fileName 
+                                SELECT file.id, file.fileName
                                 FROM `file` 
                                     JOIN `file_access` ON file.id = file_access.file_id 
                                 WHERE file.fileName LIKE '%Feedback From Rodrigo%' 
                                 AND file.fileStatus = 'approved' 
                                 AND file_access.user_id = :user_id");
-                                $stmt->bindParam(":user_id", $userId, PDO::PARAM_INT)
+                                $stmt->bindParam(":user_id", $userId, PDO::PARAM_INT);
                                 $stmt->execute();
                             }
 
-                            $files = $stmt->fetchAll();
+                            $file = $stmt->fetch();
+                            ?>
 
-                            foreach($files as $file): ?>
-
-                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
-                            
-                            <?php endforeach; ?>
+                        <p class="queryLink"><a href="file_viewer.php?id=<?php echo (int)$file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
                     </p>
                 </div>
                 <div class="feedbackInGrid">
@@ -97,7 +94,7 @@
                             if($role == 'admin')
                             {
                                 $stmt = $dbHandler->prepare("
-                                SELECT file.id, file.fileName 
+                                SELECT file.id, file.fileName  
                                 FROM `file` 
                                 WHERE file.fileName LIKE '%Feedback From Aynur%' 
                                 AND file.fileStatus = 'approved'");
@@ -116,13 +113,10 @@
                                 $stmt->execute();
                             }
 
-                            $files = $stmt->fetchAll();
+                            $file = $stmt->fetch();
+                            ?>
 
-                            foreach($files as $file): ?>
-
-                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
-                            
-                            <?php endforeach; ?>
+                        <p class="queryLink"><a href="file_viewer.php?id=<?php echo (int)$file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
                     </p>
                 </div>
             </div>
@@ -148,7 +142,7 @@
                             else
                             {
                                 $stmt = $dbHandler->prepare("
-                                SELECT file.id, file.fileName 
+                                SELECT file.id, file.fileName
                                 FROM `file` 
                                     JOIN `file_access` ON file.id = file_access.file_id 
                                 WHERE file.fileName LIKE '%Feedback From Flavius%' 
@@ -158,13 +152,10 @@
                                 $stmt->execute();
                             }
 
-                            $files = $stmt->fetchAll();
+                            $file = $stmt->fetch();
+                            ?>
 
-                            foreach($files as $file): ?>
-
-                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
-                            
-                            <?php endforeach; ?>
+                        <p class="queryLink"><a href="file_viewer.php?id=<?php echo (int)$file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
                     </p>
                 </div>
                 <div class="feedbackInGrid">
@@ -179,7 +170,7 @@
                             if($role == 'admin')
                             {
                                 $stmt = $dbHandler->prepare("
-                                SELECT file.id, file.fileName 
+                                SELECT file.id, file.fileName, file.fileFormat, file.fileFolder 
                                 FROM `file` 
                                 WHERE file.fileName LIKE '%Feedback From Ai%' 
                                 AND file.fileStatus = 'approved'");
@@ -188,7 +179,7 @@
                             else
                             {
                                 $stmt = $dbHandler->prepare("
-                                SELECT file.id, file.fileName 
+                                SELECT file.id, file.fileName, file.fileFormat, file.fileFolder 
                                 FROM `file` 
                                     JOIN `file_access` ON file.id = file_access.file_id 
                                 WHERE file.fileName LIKE '%Feedback From Ai%' 
@@ -198,13 +189,11 @@
                                 $stmt->execute();
                             }
 
-                            $files = $stmt->fetchAll();
+                            $file = $stmt->fetch();
+                            $fileName = $file['fileName'] . "." . $file['fileFormat'];
+                            ?>
 
-                            foreach($files as $file): ?>
-
-                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
-                            
-                            <?php endforeach; ?>
+                        <p class="queryLink"><a href="file_viewer.php?id=<?php echo (int)$file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
                     </p>
                 </div>
             </div>
@@ -221,7 +210,7 @@
                             if($role == 'admin')
                             {
                                 $stmt = $dbHandler->prepare("
-                                SELECT file.id, file.fileName 
+                                SELECT file.id, file.fileName
                                 FROM `file` 
                                 WHERE file.fileName LIKE '%Feedback From Jakub%' 
                                 AND file.fileStatus = 'approved'");
@@ -230,7 +219,7 @@
                             else
                             {
                                 $stmt = $dbHandler->prepare("
-                                SELECT file.id, file.fileName 
+                                SELECT file.id, file.fileName
                                 FROM `file` 
                                     JOIN `file_access` ON file.id = file_access.file_id 
                                 WHERE file.fileName LIKE '%Feedback From Jakub%' 
@@ -240,13 +229,10 @@
                                 $stmt->execute();
                             }
 
-                            $files = $stmt->fetchAll();
+                            $file = $stmt->fetch();
+                            ?>
 
-                            foreach($files as $file): ?>
-
-                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
-                            
-                            <?php endforeach; ?>
+                        <p class="queryLink"><a href="file_viewer.php?id=<?php echo (int)$file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
                     </p>
                 </div>
                 <div class="feedbackInGrid">
@@ -280,13 +266,10 @@
                                 $stmt->execute();
                             }
 
-                            $files = $stmt->fetchAll();
+                            $file = $stmt->fetch();
+                            ?>
 
-                            foreach($files as $file): ?>
-
-                            <p class="queryLink"><a href="download.php?file_id=<?php echo $file['id'];?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
-                            
-                            <?php endforeach; ?>
+                        <p class="queryLink"><a href="file_viewer.php?id=<?php echo (int)$file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
                     </p>
                 </div>
             </div>

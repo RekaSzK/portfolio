@@ -188,7 +188,69 @@ tr:nth-child(even)
     background-color: #EBEBEB;
 }
 
+tr:nth-child(odd)
+{
+    background-color: white;
+}
+
 tr:hover
 {
     background-color: rgb(200, 255, 200);
+}
+
+#bottomGrid
+{
+    font-family: "Raleway Regular";
+    font-size: 20px;
+    width: 80vw;
+    min-height: 30vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
+}
+
+#backToOverview
+{
+    font-family: "Raleway Regular";
+    font-size: 20px;
+}
+
+/*To disable the default styling of the anchor.*/
+#backToManager > a
+{
+    color: inherit;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    transition:
+        font-weight 0.25s ease-in-out;
+}
+
+/*Changing font weight while hovering.*/
+#backToManager > a:hover
+{
+    /*color: #6A89A7;*/
+    font-weight: bold;
+}
+
+/*Underline effect.*/
+#backToManager > a::after
+{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 2px;
+    width: 0;
+    background-color: black;
+    transition:
+        width 0.25s ease-in-out;
+}
+
+/*Making sure the line goes all the way across.*/
+#backToManager > a:hover::after
+{
+    width: 100%;
 }

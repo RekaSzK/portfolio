@@ -47,7 +47,7 @@
             <tr>
                 <th>User ID</th>
                 <th>Username</th>
-                <th>User role</th>
+                <th>User Role</th>
             </tr>
             <?php foreach($users as $user): ?>
                 <tr>
@@ -57,6 +57,11 @@
                 </tr>
             <?php endforeach; ?>
         </table>
+        <div id="bottomGrid">
+            <div id="backToManager">
+                <a href="user_manager.php">&lt; Back To Manager</a>
+            </div>
+        </div>
     </main>
 </body>
 </html>

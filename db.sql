@@ -255,3 +255,133 @@ VALUES ("study career coach");
 UPDATE `file` 
 SET filePath = "files/feedback/Feedback From Rodrigo de Araújo Castanheira.docx"
 WHERE id = 14;
+
+--Fixing Unicode character in fileName. 09/02/2026
+
+UPDATE `file`
+SET `fileName` = "Feedback From Flavius Petrașciuc", `filePath` = "files/feedback/Feedback From Flavius Petrașciuc.docx"
+WHERE id = 15;
+
+--Fixing a future problem. 11/02/2026
+
+UPDATE `role`
+SET roleName = "studyCareerCoach"
+WHERE id = 5;
+
+--Modifying table `file`. 13/02/2026
+
+ALTER TABLE `file`
+ADD COLUMN `fileFolder` VARCHAR(50) NULL;
+
+UPDATE `file`
+SET fileFolder = "notes"
+WHERE id IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 26);
+
+UPDATE `file`
+SET fileFolder = "feedback"
+WHERE id IN (13, 14, 15, 16, 17, 18);
+
+UPDATE `file`
+SET fileFolder = "presenting"
+WHERE id IN (19, 20, 22, 25);
+
+UPDATE `file`
+SET fileFolder = "proskills"
+WHERE id IN (23, 24);
+
+ALTER TABLE `file`
+MODIFY `fileFolder` VARCHAR(50) NOT NULL;
+
+--Modifying documents from type docx to type pdf in table `file`. 13/02/2026
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/notes/Code of Conduct - Y1P1.pdf"
+WHERE id = 1;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/notes/Code of Conduct - Y1P2.pdf"
+WHERE id = 2;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/notes/Interview Schedule - 11.28.pdf"
+WHERE id = 3;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/notes/Meeting Agenda - 11.28.pdf"
+WHERE id = 4;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/notes/Minutes of Consultation Meeting - 10.07.pdf"
+WHERE id = 5;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/notes/Minutes of Meetings - 09.12.pdf"
+WHERE id = 6;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/notes/Minutes of Meetings - 09.26.pdf"
+WHERE id = 7;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/notes/Minutes of Meetings - 10.10.pdf"
+WHERE id = 8;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/notes/Minutes of Meetings - 10.31.pdf"
+WHERE id = 9;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/notes/Minutes of Meetings - 11.28.pdf"
+WHERE id = 10;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/notes/Project Plan - Y1P1.pdf"
+WHERE id = 11;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/notes/Project Plan - Y1P2.pdf"
+WHERE id = 12;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/feedback/Feedback From Jakub Mazur.pdf"
+WHERE id = 13;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/feedback/Feedback From Rodrigo de Araújo Castanheira.pdf"
+WHERE id = 14;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/feedback/Feedback From Flavius Petrașciuc.pdf"
+WHERE id = 15;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/feedback/Feedback From Ai Nguyen.pdf"
+WHERE id = 16;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/feedback/Feedback From Aynur Tozluyurt.pdf"
+WHERE id = 17;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/feedback/Feedback From Oleksii Khomiak.pdf"
+WHERE id = 18;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/presenting/Sunny Socks Website.pdf"
+WHERE id = 19;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/proskills/Reflection Report - Y1P2.pdf"
+WHERE id = 23;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/proskills/Study Career Coaching - Y1P2.pdf"
+WHERE id = 24;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/presenting/Portfolio Presentation.pdf"
+WHERE id = 25;
+
+UPDATE `file` 
+SET fileFormat = "pdf", filePath = "files/notes/Code of Conduct - Y1P3.pdf"
+WHERE id = 26;

@@ -224,7 +224,7 @@
 
         <div id="bottomGrid">
             <div id="backToOverview">
-                <a href="category_overview.php">&lt; Back To Overview</a>
+                <a href="categories_overview.php">&lt; Back To Overview</a>
             </div>
 
             <?php if(!empty($errors)): ?>

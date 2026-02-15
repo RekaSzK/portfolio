@@ -77,7 +77,10 @@
                         <label for="password">Password:</label>
                         <input type="password" name="password" id="password" autocomplete="current-password">
                     </div>
-                    <button id="loginButton" type="submit">Log In</button>
+                    <div id="buttonContainer">
+                        <button id="loginButton" type="submit">Log In</button>
+                        <a href="register.php">Register</a>
+                    </div>
                 </form>
                 <div id="errorsContainer">
                     <?php

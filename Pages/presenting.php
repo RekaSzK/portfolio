@@ -81,7 +81,7 @@
                                 $file = $stmt->fetch(PDO::FETCH_ASSOC);
                             ?>
 
-                            <li class="queryLink"><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                            <li class="queryLink"><a href="file_viewer.php?id=<?php echo (int)$file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
 
                             <?php
                                 if($role == 'admin')
@@ -109,7 +109,7 @@
                                 $file = $stmt->fetch(PDO::FETCH_ASSOC);
                             ?>
 
-                            <li class="queryLink"><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                            <li class="queryLink"><a href="file_viewer.php?id=<?php echo (int)$file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
                         </ul>
                     </div>
                 </div>
@@ -175,7 +175,7 @@
                                 $file = $stmt->fetch(PDO::FETCH_ASSOC);
                             ?>
 
-                            <li class="queryLink"><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                            <li class="queryLink"><a href="file_viewer.php?id=<?php echo (int)$file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
 
                             <?php
                                 if($role == 'admin')
@@ -203,7 +203,7 @@
                                 $file = $stmt->fetch(PDO::FETCH_ASSOC);
                             ?>
 
-                            <li class="queryLink"><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                            <li class="queryLink"><a href="file_viewer.php?id=<?php echo (int)$file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
                         </ul>
                     </div>
                 </div>

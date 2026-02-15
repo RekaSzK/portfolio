@@ -82,7 +82,7 @@
                                 SELECT file.id, file.fileName 
                                 FROM `file` 
                                     JOIN `file_access` ON file.id = file_access.file_id 
-                                WHERE file.fileName LIKE '%Minutes of Mettings%' 
+                                WHERE file.fileName LIKE '%Minutes of Meetings%' 
                                 AND file.fileStatus = 'approved' AND file_access.user_id = :user_id");
                                 $stmt->bindParam(":user_id", $userId, PDO::PARAM_INT);
                                 $stmt->execute();
@@ -92,7 +92,7 @@
 
                             foreach($files as $file): ?>
 
-                            <li><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></li>
+                            <li><a href="file_viewer.php?id=<?php echo (int)$file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></li>
                             
                             <?php endforeach; ?>
                     </ul>
@@ -132,7 +132,7 @@
 
                             foreach($files as $file): ?>
 
-                            <li><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></li>
+                            <li><a href="file_viewer.php?id=<?php echo (int)$file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></li>
                             
                             <?php endforeach; ?>
                     </ul>
@@ -151,7 +151,7 @@
                                 $stmt = $dbHandler->prepare("
                                 SELECT file.id, file.fileName 
                                 FROM `file` 
-                                WHERE file.fileName LIKE '%Code of Conduct%' OR file.fileName LIKE '%Project Plan%' 
+                                WHERE (file.fileName LIKE '%Code of Conduct%' OR file.fileName LIKE '%Project Plan%') 
                                 AND file.fileStatus = 'approved'");
                                 $stmt->execute();
                             }
@@ -172,7 +172,7 @@
 
                             foreach($files as $file): ?>
 
-                            <li><a href="download.php?file_id=<?php echo $file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></li>
+                            <li><a href="file_viewer.php?id=<?php echo (int)$file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></li>
                             
                             <?php endforeach; ?>
                     </ul>

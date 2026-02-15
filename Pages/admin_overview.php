@@ -62,23 +62,7 @@
                         <ul id="toDoList">
                             <li>
                                 <input type="checkbox" id="todo1">
-                                <label for="todo1">Add something to the homepage on the right</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="todo2">
-                                <label for="todo2">Feedback: Get rid of Lorem Ipsum</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="todo3">
-                                <label for="todo3">Feedback: Add Flavius and Ai's feedback</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="todo4">
-                                <label for="todo4">Notes: Add Y1P3 Code of Conduct</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" id="todo5">
-                                <label for="todo5">Presenting: Add image for Y1P2</label>
+                                <label for="todo1">Feedback: Add Flavius and Ai's feedback.</label>
                             </li>
                         </ul>
                     </div>
@@ -89,6 +73,56 @@
                 <div class="gridMainMiddle">
                     <div class="gridMainInner">
                         <p class="fieldTitle">Lastest Update:<p>
+                        <?php
+                            $githubUser = "RekaSzK";
+                            $repoName   = "portfolio";
+
+                            $url = "https://api.github.com/repos/$githubUser/$repoName/commits";
+
+                            //stream_conrext_create: extra specifications on how to fetch a URL
+
+                            //in this case: when PHP fetches the URL, HTTP should use the header: 'User-Agent: Portfolio-Website\r\n'
+                            $context = stream_context_create(
+                            ["http" =>
+                                [
+                                "header" => "User-Agent: Portfolio-Website\r\n"
+                                ]
+                            ]);
+
+                            //file_get_contents: downloads data from a URL and stores it in a variable
+
+                            //in this case: downloads data from the URL using the extra rules specified in $context and stores it in $response
+                            //'false' means that when loading files, do NOT use include_path (= do NOT search folders)
+                            //$response is now a JSON string => it needs to be decoded later
+                            $response = file_get_contents($url, false, $context);
+
+
+                            if ($response !== false) //if the download from the URL wass successful, $response is a JSON string, otherwise it is false
+                            {
+                                $commits = json_decode($response, true); //decoding $response, turning it into an associative array (because of 'true', otherwise it becomes an object)
+
+                                if (!empty($commits[0])) //if there are any commits
+                                {
+                                    $latestCommit = $commits[0];
+                                    $message = htmlspecialchars($latestCommit['commit']['message']);
+                                    $date = date(
+                                        "Y-m-d H:i", //year-month-day hours-minutes
+                                        strtotime($latestCommit['commit']['author']['date']) //converts the time stored as text to actual time
+                                    );
+
+                                    echo "<p><b>$message</b></p>";
+                                    echo "<p class='fieldSubtitle'>Pushed on $date</p>";
+                                }
+                                else
+                                {
+                                    echo "<p>No commits found.</p>";
+                                }
+                            }
+                            else
+                            {
+                                echo "<p>Could not fetch updates.</p>";
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -101,7 +135,7 @@
                             try
                             {
                                 $stmt = $dbHandler->prepare("
-                                SELECT id, fileName, filePath
+                                SELECT id, fileName
                                 FROM `file`
                                 ORDER BY id DESC
                                 LIMIT 1");
@@ -114,7 +148,7 @@
                             }
 
                             if($latestUpload): ?>
-                                <a id="latestUploadLink" href="download.php?file_id=<?php echo htmlspecialchars($latestUpload['id']); ?>"><?php echo htmlspecialchars($latestUpload['fileName']); ?></a>
+                                <a id="latestUploadLink" href="file_viewer.php?id=<?php echo (int)$latestUpload['id']; ?>"><?php echo htmlspecialchars($latestUpload['fileName']); ?></a>
                             <?php else: ?>
                                 <p>No files uploaded yet.</p>
                             <?php endif; ?>

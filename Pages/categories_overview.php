@@ -43,8 +43,8 @@
         <table>
             <tr>
                 <th>Category ID</th>
-                <th>Category name</th>
-                <th>Category year ID</th>
+                <th>Category Name</th>
+                <th>Category Year ID</th>
             </tr>
             <?php foreach($categories as $category): ?>
                 <tr>
@@ -54,6 +54,11 @@
                 </tr>
             <?php endforeach; ?>
         </table>
+        <div id="bottomGrid">
+            <div id="backToManager">
+                <a href="category_manager.php">&lt; Back To Manager</a>
+            </div>
+        </div>
     </main>
 </body>
 </html>

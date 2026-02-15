@@ -1,0 +1,64 @@
+@font-face
+{
+    font-family: "Raleway Light";
+    src: url(../fonts/raleway.light.ttf);
+    font-family: "Raleway Regular";
+    src: url(../fonts/raleway.regular.ttf);
+    font-family: "Raleway Bold";
+    src: url(../fonts/raleway.bold.ttf);
+}
+
+html, body
+{
+    margin: 0;
+    height: 100%;
+}
+
+body
+{
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*General design ends here.
+Header design starts.*/
+
+/*NOTE: The header has been designed with the intention of being able to reuse it, so other pages only require the disabling of links.*/
+
+
+header
+{
+    box-sizing: border-box;
+    padding: 20px 0 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#headerGrid
+{
+    font-family: "Raleway Regular", "Arial";
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin: 0 3% 0 3%;
+}
+
+
+/*Header design ends here.
+Main design starts.*/
+
+
+main
+{
+    background-image: url(../images/bg.png);
+    background-size: cover;
+    background-color: white;
+    padding: 3%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

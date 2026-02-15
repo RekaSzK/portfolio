@@ -4,14 +4,18 @@
 
     try
     {
-        $stmt = $dbHandler->prepare("SELECT * FROM `file`");
+        $stmt = $dbHandler->prepare("
+        SELECT user.userName, file.fileName
+        FROM `file_access`
+            JOIN `user` ON file_access.user_id = user.id
+            JOIN `file` ON file_access.file_id = file.id");
         $stmt->execute();
 
-        $files = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $fileAccess = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     catch(Exception $ex)
     {
-        die("Files could not be retrived. Error: " . $ex->getMessage());
+        die("File access list could not be retrived. Error: " . $ex->getMessage());
     }
 ?>
 <!DOCTYPE html>
@@ -19,7 +23,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FILES OVERVIEW</title>
+    <title>FILE ACCESS OVERVIEW</title>
     <link rel="stylesheet" href="../css/overview.css">
 </head>
 <body>
@@ -39,32 +43,22 @@
         </div>
     </header>
     <main>
-        <h1>Files Overview</h1>
+        <h1>File Access Overview</h1>
         <table>
             <tr>
-                <th>File ID</th>
+                <th>Username</th>
                 <th>File Name</th>
-                <th>File Format</th>
-                <th>File Path</th>
-                <th>File Category ID</th>
-                <th>File Status</th>
-                <th>File Folder</th>
             </tr>
-            <?php foreach($files as $file): ?>
+            <?php foreach($fileAccess as $record): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($file['id']); ?></td>
-                    <td><?php echo htmlspecialchars($file['fileName']); ?></td>
-                    <td><?php echo htmlspecialchars($file['fileFormat']); ?></td>
-                    <td><?php echo htmlspecialchars($file['filePath']); ?></td>
-                    <td><?php echo htmlspecialchars($file['fileCategory_id']); ?></td>
-                    <td><?php echo htmlspecialchars($file['fileStatus']); ?></td>
-                    <td><?php echo htmlspecialchars($file['fileFolder']); ?></td>
+                    <td><?php echo htmlspecialchars($record['userName']); ?></td>
+                    <td><?php echo htmlspecialchars($record['fileName']); ?></td>
                 </tr>
             <?php endforeach; ?>
         </table>
         <div id="bottomGrid">
             <div id="backToManager">
-                <a href="file_manager.php">&lt; Back To Manager</a>
+                <a href="file_access_manager.php">&lt; Back To Manager</a>
             </div>
         </div>
     </main>
