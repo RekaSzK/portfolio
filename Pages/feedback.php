@@ -27,6 +27,7 @@
                 <li><a href="notes.php">Notes</a></li>
                 <li><a href="presenting.php">Presenting</a></li>
                 <li><a href="proskills.php">Professional Skills</a></li>
+                <li><a href="projects.php">Projects</a></li>
                 <?php
                     if(isset($_SESSION['role']) && $_SESSION['role'] == "admin")
                     {

@@ -87,6 +87,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REGISTER</title>
+    <link rel="icon" type="image/ico" href="../images/icon.png">
     <link rel="stylesheet" href="../css/register.css">
 </head>
 <body>
@@ -118,7 +119,7 @@
                         <input type="password" name="password" id="password">
                     </div>
                     <div id="buttonContainer">
-                        <button id="loginButton" type="submit">Register</button>
+                        <button id="registerButton" type="submit">Register</button>
                     </div>
                 </form>
                 <div id="errorsContainer">

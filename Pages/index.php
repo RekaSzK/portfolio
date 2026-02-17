@@ -22,6 +22,7 @@
                 <li><a href="notes.php">Notes</a></li>
                 <li><a href="presenting.php">Presenting</a></li>
                 <li><a href="proskills.php">Professional Skills</a></li>
+                <li><a href="projects.php">Projects</a></li>
                 <?php
                     if(isset($_SESSION['role']) && $_SESSION['role'] == "admin")
                     {
@@ -55,9 +56,11 @@
                             Using <b>FEEDBACK</b>, you can find out what people in my life have to say about me, whether 
                             professionally or personally.<br>
                             On the <b>NOTES</b> page, you can find all of my approved minutes of meetings and plenary notes.<br>
-                            The <b>CONTACT</b> tab provides you with a form, through which you can provide me with any kind of 
-                            feedback you might have.<br>
-                            Lastly, <b>FILES</b> contains all of my assignments, if you wish to take a look at them.
+                            The <b>PRESENTING</b> tab displays all of my presejtations, whether group project or personal. 
+                            Both the presentation and its grading is included.<br>
+                            The <b>PROFESSIONAL SKILLS</b> page has all the documents I have created for the course. Reflection 
+                            reports and further documentation aim to provide insight into my work ethic and professionalism.
+                            Lastly, <b>PROJECTS</b> contains all of my assignments, if you wish to take a look at them.
                         </p>
                         <p id="mainLeftLowerParagraph">
                             Thank you for your visit. I hope you find everything you're looking for.

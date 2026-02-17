@@ -27,6 +27,7 @@
                 <li id="currentPage">Notes</li>
                 <li><a href="presenting.php">Presenting</a></li>
                 <li><a href="proskills.php">Professional Skills</a></li>
+                <li><a href="projects.php">Projects</a></li>
                 <?php
                     if(isset($_SESSION['role']) && $_SESSION['role'] == "admin")
                     {
@@ -83,7 +84,8 @@
                                 FROM `file` 
                                     JOIN `file_access` ON file.id = file_access.file_id 
                                 WHERE file.fileName LIKE '%Minutes of Meetings%' 
-                                AND file.fileStatus = 'approved' AND file_access.user_id = :user_id");
+                                AND file.fileStatus = 'approved' 
+                                AND file_access.user_id = :user_id");
                                 $stmt->bindParam(":user_id", $userId, PDO::PARAM_INT);
                                 $stmt->execute();
                             }

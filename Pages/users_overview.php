@@ -23,6 +23,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USERS OVERVIEW</title>
+    <link rel="icon" type="image/ico" href="../images/icon.png">
     <link rel="stylesheet" href="../css/overview.css">
 </head>
 <body>
@@ -36,6 +37,7 @@
                 <li><a href="notes.php">Notes</a></li>
                 <li><a href="presenting.php">Presenting</a></li>
                 <li><a href="proskills.php">Professional Skills</a></li>
+                <li><a href="projects.php">Projects</a></li>
                 <li><a href='admin_overview.php'>Admin</a></li>
                 <li><a href='logout.php'>Log Out</a></li>
             </ul>

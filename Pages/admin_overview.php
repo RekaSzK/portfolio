@@ -13,6 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN DASH</title>
+    <link rel="icon" type="image/ico" href="../images/icon.png">
     <link rel="stylesheet" href="../css/admin_overview.css">
 </head>
 <body>
@@ -26,6 +27,7 @@
                 <li><a href="notes.php">Notes</a></li>
                 <li><a href="presenting.php">Presenting</a></li>
                 <li><a href="proskills.php">Professional Skills</a></li>
+                <li><a href="projects.php">Projects</a></li>
                 <li id='currentPage'>Admin</li>
                 <li><a href='logout.php'>Log Out</a></li>
             </ul>
@@ -62,7 +64,23 @@
                         <ul id="toDoList">
                             <li>
                                 <input type="checkbox" id="todo1">
-                                <label for="todo1">Feedback: Add Flavius and Ai's feedback.</label>
+                                <label for="todo1">Password change possibility.</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="todo2">
+                                <label for="todo2">Maybe custom page for error messages when file is not accessible?</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="todo3">
+                                <label for="todo3">Add file access for user roles (notes, presenting, proskills).</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="todo4">
+                                <label for="todo4">Add projects tab?</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="todo5">
+                                <label for="todo5">Feedback: Add Flavius and Ai's feedback.</label>
                             </li>
                         </ul>
                     </div>
