@@ -12,7 +12,7 @@
 
         $userName = filter_input(INPUT_POST, "userName", FILTER_SANITIZE_SPECIAL_CHARS);
         $userRole = filter_input(INPUT_POST, "userRole");
-        $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
+        $password = filter_input(INPUT_POST, "password");
         
         $errors = array();
 

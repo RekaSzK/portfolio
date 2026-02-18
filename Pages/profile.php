@@ -1,6 +1,10 @@
 <?php
     require_once("../includes/authorise.php");
     require_once("../dbconnect.php");
+    
+    $userId = $_SESSION['userId'];
+    $role = $_SESSION['role'];
+    $userName = $_SESSION['userName'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +48,18 @@
         </div>
     </header>
     <main>
-        
+        <div id="mainField">
+            <div id="mainContainer">
+                <div id="mainFlex">
+                    <p id="title">Your Profile</p>
+                    <ul id="userData">
+                        <li id="topListItem">Username: <b><?php echo $userName; ?></b></li>
+                        <li>Role: <b><?php echo $role; ?></b></li>
+                        <li><i><a href="change_password.php">Change Password</a></i></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </main>
 </body>
 </html>
