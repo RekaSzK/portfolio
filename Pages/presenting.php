@@ -51,94 +51,18 @@
     <main>
         <div id="mainGrid">
             <div class="mainRow">
-                <div class="mainText">
-                    <div class="mainTextInner">
-                        <p class="textTitle">
-                            <b>YEAR 1, PERIOD 1</b> : PROJECT WEB DEVELOPMENT
-                        </p>
-                        <p class="textParagraph">
-                            The presentation was created and presented by <b>Aynur Tozluyurt</b> and <b>myself</b>. 
-                            We aimed to create a clean, polished PowerPoint, to highlight the colourful nature of our website. 
-                            Included were several images of the final look of our website, icons that had been used and the colour scheme.
-                        </p>
-                        <ul class="presentationLink">
-                            <?php
-                                if($role == 'admin')
-                                {
-                                    $stmt = $dbHandler->prepare("
-                                    SELECT file.id, file.fileName 
-                                    FROM `file` 
-                                    WHERE file.fileName LIKE '%Presentation - Y1P1%' AND file.fileStatus = 'approved'");
-                                    $stmt->execute();
-                                }
-                                else
-                                {
-                                    $stmt = $dbHandler->prepare("
-                                    SELECT file.id, file.fileName 
-                                    FROM `file` 
-                                        JOIN `file_access` ON file.id = file_access.file_id 
-                                    WHERE file.fileName LIKE '%Presentation - Y1P1%' 
-                                    AND file.fileStatus = 'approved' 
-                                    AND file_access.user_id = :user_id");
-                                    $stmt->bindParam(":user_id", $userId, PDO::PARAM_INT);
-                                    $stmt->execute();
-                                }
-
-                                $file = $stmt->fetch(PDO::FETCH_ASSOC);
-                            ?>
-
-                            <li class="queryLink"><a href="file_viewer.php?id=<?php echo (int)$file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
-
-                            <?php
-                                if($role == 'admin')
-                                {
-                                    $stmt = $dbHandler->prepare("
-                                    SELECT file.id, file.fileName 
-                                    FROM `file` 
-                                    WHERE file.fileName LIKE '%Presentation Grading - Y1P1%' 
-                                    AND file.fileStatus = 'approved'");
-                                    $stmt->execute();
-                                }
-                                else
-                                {
-                                    $stmt = $dbHandler->prepare("
-                                    SELECT file.id, file.fileName 
-                                    FROM `file` 
-                                        JOIN `file_access` ON file.id = file_access.file_id 
-                                    WHERE file.fileName LIKE '%Presentation Grading - Y1P1%' 
-                                    AND file.fileStatus = 'approved' 
-                                    AND file_access.user_id = :user_id");
-                                    $stmt->bindParam(":user_id", $userId, PDO::PARAM_INT);
-                                    $stmt->execute();
-                                }
-
-                                $file = $stmt->fetch(PDO::FETCH_ASSOC);
-                            ?>
-
-                            <li class="queryLink"><a href="file_viewer.php?id=<?php echo (int)$file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
-                        </ul>
-                    </div>
-                </div>
                 <div class="mainImg">
                     <div class="mainImgInner">
-                        <img id="sunnySocksImg" src="../images/SunnySocks.png" alt="Image of the Sunny Socks Homepage">
-                    </div>
-                </div>
-            </div>
-            <div class="mainRow">
-                <div class="mainImg">
-                    <div class="mainImgInner">
-                        <img id="gemorskosImg" src="../images/gemorskos.png" alt="Image of the Gemorskos Homepage on Windows Client">
+                        <img id="TBA" src="TBA" alt="TBA">
                     </div>
                 </div>
                 <div class="mainText">
                     <div class="mainTextInner">
                         <p class="textTitle">
-                            <b>YEAR 1, PERIOD 2</b> : PROJECT DATABASE APPLICATION MANAGEMENT
+                            <b>YEAR 1, PERIOD 3</b> : PROJECT BATTLEBOT
                         </p>
                         <p class="textParagraph">
-                            The final assessment did not require a presentation, as it was a group effort. 
-                            The project concluded with a success as all three team members passed.
+                            The project is still ongoing.
                         </p>
                     </div>
                 </div>
@@ -219,20 +143,96 @@
                     </div>
                 </div>
             </div>
-            <div class="mainRow">
+             <div class="mainRow">
                 <div class="mainImg">
                     <div class="mainImgInner">
-                        <img id="TBA" src="TBA" alt="TBA">
+                        <img id="gemorskosImg" src="../images/gemorskos.png" alt="Image of the Gemorskos Homepage on Windows Client">
                     </div>
                 </div>
                 <div class="mainText">
                     <div class="mainTextInner">
                         <p class="textTitle">
-                            <b>YEAR 1, PERIOD 3</b> : PROJECT BATTLEBOT
+                            <b>YEAR 1, PERIOD 2</b> : PROJECT DATABASE APPLICATION MANAGEMENT
                         </p>
                         <p class="textParagraph">
-                            The project is still ongoing.
+                            The final assessment did not require a presentation, as it was a group effort. 
+                            The project concluded with a success as all three team members passed.
                         </p>
+                    </div>
+                </div>
+            </div>
+            <div class="mainRow">
+                <div class="mainText">
+                    <div class="mainTextInner">
+                        <p class="textTitle">
+                            <b>YEAR 1, PERIOD 1</b> : PROJECT WEB DEVELOPMENT
+                        </p>
+                        <p class="textParagraph">
+                            The presentation was created and presented by <b>Aynur Tozluyurt</b> and <b>myself</b>. 
+                            We aimed to create a clean, polished PowerPoint, to highlight the colourful nature of our website. 
+                            Included were several images of the final look of our website, icons that had been used and the colour scheme.
+                        </p>
+                        <ul class="presentationLink">
+                            <?php
+                                if($role == 'admin')
+                                {
+                                    $stmt = $dbHandler->prepare("
+                                    SELECT file.id, file.fileName 
+                                    FROM `file` 
+                                    WHERE file.fileName LIKE '%Presentation - Y1P1%' AND file.fileStatus = 'approved'");
+                                    $stmt->execute();
+                                }
+                                else
+                                {
+                                    $stmt = $dbHandler->prepare("
+                                    SELECT file.id, file.fileName 
+                                    FROM `file` 
+                                        JOIN `file_access` ON file.id = file_access.file_id 
+                                    WHERE file.fileName LIKE '%Presentation - Y1P1%' 
+                                    AND file.fileStatus = 'approved' 
+                                    AND file_access.user_id = :user_id");
+                                    $stmt->bindParam(":user_id", $userId, PDO::PARAM_INT);
+                                    $stmt->execute();
+                                }
+
+                                $file = $stmt->fetch(PDO::FETCH_ASSOC);
+                            ?>
+
+                            <li class="queryLink"><a href="file_viewer.php?id=<?php echo (int)$file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+
+                            <?php
+                                if($role == 'admin')
+                                {
+                                    $stmt = $dbHandler->prepare("
+                                    SELECT file.id, file.fileName 
+                                    FROM `file` 
+                                    WHERE file.fileName LIKE '%Presentation Grading - Y1P1%' 
+                                    AND file.fileStatus = 'approved'");
+                                    $stmt->execute();
+                                }
+                                else
+                                {
+                                    $stmt = $dbHandler->prepare("
+                                    SELECT file.id, file.fileName 
+                                    FROM `file` 
+                                        JOIN `file_access` ON file.id = file_access.file_id 
+                                    WHERE file.fileName LIKE '%Presentation Grading - Y1P1%' 
+                                    AND file.fileStatus = 'approved' 
+                                    AND file_access.user_id = :user_id");
+                                    $stmt->bindParam(":user_id", $userId, PDO::PARAM_INT);
+                                    $stmt->execute();
+                                }
+
+                                $file = $stmt->fetch(PDO::FETCH_ASSOC);
+                            ?>
+
+                            <li class="queryLink"><a href="file_viewer.php?id=<?php echo (int)$file['id']; ?>"><?php echo htmlspecialchars($file['fileName']); ?></a></p>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mainImg">
+                    <div class="mainImgInner">
+                        <img id="sunnySocksImg" src="../images/SunnySocks.png" alt="Image of the Sunny Socks Homepage">
                     </div>
                 </div>
             </div>

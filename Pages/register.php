@@ -64,6 +64,104 @@
                     $stmt->bindParam(":userRoleId", $userRoleId['id'], PDO::PARAM_INT);
                     $stmt->execute();
 
+                    $userId = (int)$dbHandler->lastInsertId(); //returns id of last inserted record
+
+                    if($userRoleId['id'] == 2) //visitor
+                    {
+                        $stmt = $dbHandler->prepare("
+                        INSERT INTO `file_access` (user_id, file_id) 
+                        VALUES 
+                            (:userId, 13),
+                            (:userId, 14),
+                            (:userId, 15),
+                            (:userId, 16),
+                            (:userId, 17),
+                            (:userId, 18)");
+                        $stmt->bindValue(":userId", $userId, PDO::PARAM_INT);
+                        $stmt->execute();
+                    }
+
+                    elseif($userRoleId['id'] == 3) //lecturer
+                    {
+                        $stmt = $dbHandler->prepare("
+                        INSERT INTO `file_access` (user_id, file_id) 
+                        VALUES 
+                            (:userId, 1),
+                            (:userId, 2),
+                            (:userId, 3),
+                            (:userId, 4),
+                            (:userId, 5),
+                            (:userId, 6),
+                            (:userId, 7),
+                            (:userId, 8),
+                            (:userId, 9),
+                            (:userId, 10),
+                            (:userId, 11),
+                            (:userId, 12),
+                            (:userId, 13),
+                            (:userId, 14),
+                            (:userId, 15),
+                            (:userId, 16),
+                            (:userId, 17),
+                            (:userId, 18),
+                            (:userId, 19),
+                            (:userId, 20),
+                            (:userId, 22),
+                            (:userId, 25),
+                            (:userId, 26)");
+                        $stmt->bindValue(":userId", $userId, PDO::PARAM_INT);
+                        $stmt->execute();
+                    }
+
+                    elseif($userRoleId['id'] == 4) //student
+                    {
+                        $stmt = $dbHandler->prepare("
+                        INSERT INTO `file_access` (user_id, file_id) 
+                        VALUES 
+                            (:userId, 1),
+                            (:userId, 2),
+                            (:userId, 11),
+                            (:userId, 12),
+                            (:userId, 13),
+                            (:userId, 14),
+                            (:userId, 15),
+                            (:userId, 16),
+                            (:userId, 17),
+                            (:userId, 18),
+                            (:userId, 26)");
+                        $stmt->bindValue(":userId", $userId, PDO::PARAM_INT);
+                        $stmt->execute();
+                    }
+
+                    elseif($userRoleId['id'] == 5) //studyCareerCoach
+                    {
+                        $stmt = $dbHandler->prepare("
+                        INSERT INTO `file_access` (user_id, file_id) 
+                        VALUES 
+                            (:userId, 3),
+                            (:userId, 4),
+                            (:userId, 5),
+                            (:userId, 6),
+                            (:userId, 7),
+                            (:userId, 8),
+                            (:userId, 9),
+                            (:userId, 10),
+                            (:userId, 13),
+                            (:userId, 14),
+                            (:userId, 15),
+                            (:userId, 16),
+                            (:userId, 17),
+                            (:userId, 18),
+                            (:userId, 19),
+                            (:userId, 20),
+                            (:userId, 22),
+                            (:userId, 23),
+                            (:userId, 24),
+                            (:userId, 25)");
+                        $stmt->bindValue(":userId", $userId, PDO::PARAM_INT);
+                        $stmt->execute();
+                    }
+
                     header("Location: login.php");
                     exit;
                 }
